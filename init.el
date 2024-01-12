@@ -1,4 +1,4 @@
-(add-to-list 'load-path "/home/jepson/.config/emacs/modules")
+(add-to-list 'load-path "~/.config/emacs/modules")
 
 ;;; melpa (bleading-edge)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -52,16 +52,16 @@ or go back to just one window (by deleting all but the selected window)."
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
  '(geiser-guile-binary "guile2.2")
  '(menu-bar-mode nil)
- '(mini-modeline-echo-duration 999)
- '(mini-modeline-echo-position "left")
- '(mini-modeline-face-attr '(:background "rey75"))
- '(mini-modeline-l-format nil)
+ '(mini-modeline-echo-duration 10)
+ ;; '(mini-modeline-echo-position "left")
+ ;; '(mini-modeline-face-attr '(:background "rey75"))
+ ;; '(mini-modeline-l-format nil)
  '(org-format-latex-options
    '(:foreground default :background default :scale 4.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
 		 ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-hide-emphasis-markers t)
  '(package-selected-packages
-   '(magit rust-mode sly glsl-mode scala-mode d-mode tramp use-package god-mode geiser-guile monkeytype evil mini-modeline which-key))
+   '(magit rust-mode sly glsl-mode scala-mode d-mode tramp god-mode geiser-guile monkeytype evil mini-modeline which-key))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -75,37 +75,36 @@ or go back to just one window (by deleting all but the selected window)."
       browse-url-browser-function #'eww-browse-url)
 (electric-pair-mode t)
 
-(use-package typetest)
+(require 'typetest)
 
 ;;; god mode
-(use-package god-mode
-  :init
-  (god-mode)
-  (setq god-exempt-major-modes nil
-	god-exempt-predicates nil)
-  ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
-  (global-set-key (kbd "C-z") #'god-local-mode)
-  :config
-  (define-key god-local-mode-map (kbd ".") #'repeat)
-  (define-key god-local-mode-map (kbd "z") #'god-local-mode)
-  )
+(require 'god-mode)
+
+(god-mode)
+(setq god-exempt-major-modes nil
+      god-exempt-predicates nil)
+;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
+(global-set-key (kbd "C-z") #'god-local-mode)
+
+(define-key god-local-mode-map (kbd ".") #'repeat)
+(define-key god-local-mode-map (kbd "z") #'god-local-mode)
 
 ;;; org mode
-(use-package org
-  :config
-  (dolist (face '(
-		  (org-level-1 . 2.0)
-		  (org-level-2 . 1.75)
-		  (org-level-3 . 1.5)
-		  (org-level-4 . 1.25)
-		  (org-level-5 . 1.0)
-		  (org-level-6 . 1.0)
-		  (org-level-7 . 1.0)
-		  (org-level-8 . 1.0)))
-    (set-face-attribute (car face) nil :height (cdr face)))
-  (setq org-src-window-setup 'current-window
-	org-startup-indented t))
+(require 'org)
 
-(use-package tramp)
+(dolist (face '(
+		(org-level-1 . 2.0)
+		(org-level-2 . 1.75)
+		(org-level-3 . 1.5)
+		(org-level-4 . 1.25)
+		(org-level-5 . 1.0)
+		(org-level-6 . 1.0)
+		(org-level-7 . 1.0)
+		(org-level-8 . 1.0)))
+  (set-face-attribute (car face) nil :height (cdr face)))
+(setq org-src-window-setup 'current-window
+      org-startup-indented t)
 
-(use-package tetris)
+(require 'tramp)
+
+(require 'tetris)
