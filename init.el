@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.config/emacs/")
+(add-to-list 'load-path "~/.config/emacs/modules")
 (require 'config)
 
 ;;; features
@@ -19,15 +19,11 @@
  '(mini-modeline-face-attr '(:background "rey75"))
  '(org-babel-J-command "~/.local/bin/jconsole")
  '(org-format-latex-options
-   '(:foreground default :background default :scale 4.0 :html-foreground
-		 "Black" :html-background "Transparent" :html-scale
-		 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+   '(:foreground default :background default :scale 4.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+		 ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-hide-emphasis-markers t)
  '(package-selected-packages
-   '(d-mode dash evil geiser-guile glsl-mode gnuplot gnuplot-mode
-	    god-mode j-mode magit mini-modeline monkeytype org-contrib
-	    paredit rust-mode scala-mode sly smalltalk-mode tramp
-	    which-key))
+   '(avy d-mode dash evil geiser-guile glsl-mode gnuplot gnuplot-mode god-mode j-mode magit mini-modeline monkeytype org-contrib paredit rust-mode scala-mode sly smalltalk-mode tramp which-key))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces

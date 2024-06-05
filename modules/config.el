@@ -1,11 +1,10 @@
-(add-to-list 'load-path "~/.config/emacs/modules")
 (add-to-list 'load-path "~/.config/emacs/lisp")
 
 ;;; melpa (bleading-edge)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "http://127.0.0.1:8080/packages/") t)
+	     '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
 ;;; keybindings
@@ -47,13 +46,11 @@ or go back to just one window (by deleting all but the selected window)."
       touch-screen-display-keyboard t)
 (electric-pair-mode t)
 
-;; (require 'typetest)
-
 ;;; god mode
 (require 'god-mode)
 (require 'god-mode-isearch)
 
-(god-mode)
+(god-mode-all 1)
 (setq god-exempt-major-modes nil
       god-exempt-predicates nil)
 ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
@@ -88,6 +85,13 @@ or go back to just one window (by deleting all but the selected window)."
 (require 'tramp)
 
 (require 'tetris)
+
+(require 'typetest)
+
+(require 'avy)
+
+(keymap-global-set "C-; C-j" 'avy-goto-char)
+(keymap-global-set "C-; C-l" 'avy-goto-line)
 
 (require 'ob-J)
 
