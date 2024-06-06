@@ -7,6 +7,13 @@
 	     '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
+;;; termux compatibility
+(setenv "PATH" (format "%s:%s"
+		       "/data/data/com.termux/files/usr/bin"
+		       (getenv "PATH")))
+(push "/data/data/com.termux/files/usr/bin"
+      exec-path)
+
 ;;; keybindings
 (defun keyboard-escape-quit ()
   "Exit the current \"mode\" (in a generalized sense of the word).
