@@ -23,7 +23,10 @@
 		 ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-hide-emphasis-markers t)
  '(package-selected-packages
-   '(avy d-mode dash evil geiser-guile glsl-mode gnuplot gnuplot-mode god-mode j-mode magit mini-modeline monkeytype org-contrib paredit rust-mode scala-mode sly smalltalk-mode tramp which-key))
+   '(typetest titan-mode avy d-mode dash evil geiser-guile glsl-mode gnuplot gnuplot-mode god-mode j-mode magit mini-modeline monkeytype org-contrib paredit rust-mode scala-mode sly smalltalk-mode tramp which-key))
+ '(package-vc-selected-packages
+   '((typetest :url "https://github.com/jepsoniada/typetest.git")
+     (titan-mode :url "https://github.com/jepsoniada/titan-mode.git")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
