@@ -57,7 +57,10 @@ or go back to just one window (by deleting all but the selected window)."
 (when (and (ignore-errors (require 'god-mode))
 	   (ignore-errors (require 'god-mode-isearch)))
 
-  (god-mode-all 1)
+  ;; (god-mode-all 1)
+  (add-to-list 'window-state-change-hook (lambda nil
+					   (when (not (minibufferp))
+					     (god-local-mode 1))))
   (setq god-exempt-major-modes nil
 	god-exempt-predicates nil)
   ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
