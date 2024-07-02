@@ -99,10 +99,10 @@ or go back to just one window (by deleting all but the selected window)."
 
 (ignore-errors (require 'typetest))
 
-(ignore-errors (require 'avy))
+(when (ignore-errors (require 'avy))
 
-(keymap-global-set "C-; C-j" 'avy-goto-char)
-(keymap-global-set "C-; C-l" 'avy-goto-line)
+  (keymap-global-set "C-; C-j" 'avy-goto-char)
+  (keymap-global-set "C-; C-l" 'avy-goto-line))
 
 (when (ignore-errors (require 'ob-J))
 
@@ -256,6 +256,9 @@ This function is called by `org-babel-execute-src-block'."
       ;;   result
       ;;   )
       )))
+
+(when (ignore-errors (require 'counsel))
+  (counsel-mode))
 
 (define-minor-mode si-mode
   "testing selfinsert???")
