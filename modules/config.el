@@ -63,6 +63,14 @@ or go back to just one window (by deleting all but the selected window)."
 					     (god-local-mode 1))))
   (setq god-exempt-major-modes nil
 	god-exempt-predicates nil)
+  (setq-default mode-line-format
+		(cons '(:eval (if god-local-mode
+				  (propertize " god "
+					      'face '((t ( :background "#0F0"))))
+				(propertize " not "
+					    'face '((t ( :background "#F00"))))))
+		      mode-line-format))
+
   ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
   (global-set-key (kbd "C-z") #'god-local-mode)
   (global-set-key (kbd "π") #'god-local-mode)
@@ -276,16 +284,9 @@ This function is called by `org-babel-execute-src-block'."
   (let ((fn (lambda (a b)
 	      (< (length (if (consp a) (car a) a))
 		 (length (if (consp b) (car b) b))))))
-
     (ivy-configure 'read-file-name-internal
       :sort-fn fn)
     (ivy-configure 'execute-extended-command
-      :sort-fn fn))
-
-  ;; (ivy-configure 'read-file-name-internal
-  ;;   :sort-fn nil
-  ;;   :display-transformer-fn #'ivy-read-file-transformer
-  ;;   :alt-done-fn #'ivy--directory-done)
-  )
+      :sort-fn fn)))
 
 (provide 'config)
