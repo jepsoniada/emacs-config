@@ -1,5 +1,4 @@
 (add-to-list 'load-path "~/.config/emacs/modules")
-(require 'config)
 
 ;;; features
 (put 'set-goal-column 'disabled nil)
@@ -35,3 +34,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(require 'config)
