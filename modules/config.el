@@ -326,4 +326,6 @@ This function is called by `org-babel-execute-src-block'."
     "C-p" #'jepson/up-list
     "n" #'down-list
     "C-n" #'down-list))
+
+(when (ignore-errors (require 'simple-httpd)))
 (provide 'config)
