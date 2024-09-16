@@ -55,7 +55,8 @@ or go back to just one window (by deleting all but the selected window)."
 
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
-	   (ignore-errors (require 'god-mode-isearch)))
+	   (ignore-errors (require 'god-mode-isearch))
+	   (null (getenv "TITAN")))
 
   ;; (god-mode-all 1)
   (add-to-list 'window-state-change-hook (lambda nil
