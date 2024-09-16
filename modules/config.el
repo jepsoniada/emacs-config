@@ -282,7 +282,6 @@ This function is called by `org-babel-execute-src-block'."
 
 (when (ignore-errors (require 'ivy))
   (ivy-mode 1)
-  (setf (alist-get t ivy-initial-inputs-alist) "^")
   (let ((fn (lambda (a b)
 	      (< (length (if (consp a) (car a) a))
 		 (length (if (consp b) (car b) b))))))
