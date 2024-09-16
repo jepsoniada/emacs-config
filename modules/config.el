@@ -14,16 +14,6 @@
 (push "/data/data/com.termux/files/usr/bin"
       exec-path)
 
-;;; util
-
-(defun func-def (function-symbol)
-  "return lisp function definition"
-  (car (read-from-string (save-window-excursion
-			   (find-function function-symbol)
-			   (set-mark (point))
-			   (forward-sexp)
-			   (buffer-substring-no-properties (mark) (point))))))
-
 ;;; keybindings
 (defun keyboard-escape-quit ()
   "Exit the current \"mode\" (in a generalized sense of the word).
@@ -324,4 +314,16 @@ This function is called by `org-babel-execute-src-block'."
     (ivy-configure 'execute-extended-command
       :sort-fn fn)))
 
+(when (ignore-errors (require 'repeat))
+  (repeat-mode 1)
+  (defvar-keymap lisp-traverse-sexp-repeat-map
+    :repeat t
+    "f" #'forward-sexp
+    "C-f" #'forward-sexp
+    "b" #'backward-sexp
+    "C-b" #'backward-sexp
+    "p" #'jepson/up-list
+    "C-p" #'jepson/up-list
+    "n" #'down-list
+    "C-n" #'down-list))
 (provide 'config)
