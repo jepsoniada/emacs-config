@@ -343,4 +343,57 @@ This function is called by `org-babel-execute-src-block'."
     "C-n" #'down-list))
 
 (when (ignore-errors (require 'simple-httpd)))
+
+(when (ignore-errors (and (require 'titan-mode)
+			  (not (null (getenv "TITAN")))))
+  (setq-default mode-line-format
+		'((:eval
+		   (propertize (format " %s%s%s%s%s%s%s "
+				       (let ((mod (alist-get 'meta titan-mode--modifiers)))
+					 (or (nth 2 (when (member (car mod) titan-mode--current-modifiers)
+						      mod))
+					     ""))
+				       (let ((mod (alist-get 'control titan-mode--modifiers)))
+					 (or (nth 2 (when (member (car mod) titan-mode--current-modifiers)
+						      mod))
+					     ""))
+				       (let ((mod (alist-get 'shift titan-mode--modifiers)))
+					 (or (nth 2 (when (member (car mod) titan-mode--current-modifiers)
+						      mod))
+					     ""))
+				       (let ((mod (alist-get 'hyper titan-mode--modifiers)))
+					 (or (nth 2 (when (member (car mod) titan-mode--current-modifiers)
+						      mod))
+					     ""))
+				       (let ((mod (alist-get 'super titan-mode--modifiers)))
+					 (or (nth 2 (when (member (car mod) titan-mode--current-modifiers)
+						      mod))
+					     ""))
+				       (let ((mod (alist-get 'alt titan-mode--modifiers)))
+					 (or (nth 2 (when (member (car mod) titan-mode--current-modifiers)
+						      mod))
+					     ""))
+				       (if (eq nil titan-mode--current-modifiers) "-" ""))
+			       'face `((t (:background ,(if titan-mode
+							    "#0F0"
+							  "#F00")))))
+		   )
+		  "%e"
+		  mode-line-front-space
+		  (:propertize
+		   ("" mode-line-mule-info mode-line-client mode-line-modified
+		    mode-line-remote mode-line-window-dedicated)
+		   display
+		   (min-width (6.0)))
+		  mode-line-frame-identification
+		  mode-line-buffer-identification
+		  "   "
+		  mode-line-position
+		  (project-mode-line project-mode-line-format)
+		  (vc-mode vc-mode)
+		  "  "
+		  mode-line-modes
+		  mode-line-misc-info
+		  mode-line-end-spaces)))
+
 (provide 'config)
