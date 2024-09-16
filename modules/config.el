@@ -14,6 +14,16 @@
 (push "/data/data/com.termux/files/usr/bin"
       exec-path)
 
+;;; util
+
+(defun func-def (function-symbol)
+  "return lisp function definition"
+  (car (read-from-string (save-window-excursion
+			   (find-function function-symbol)
+			   (set-mark (point))
+			   (forward-sexp)
+			   (buffer-substring-no-properties (mark) (point))))))
+
 ;;; keybindings
 (defun keyboard-escape-quit ()
   "Exit the current \"mode\" (in a generalized sense of the word).
@@ -74,12 +84,27 @@ or go back to just one window (by deleting all but the selected window)."
   (setq god-exempt-major-modes nil
 	god-exempt-predicates nil)
   (setq-default mode-line-format
-		(cons '(:eval (if god-local-mode
-				  (propertize " god "
-					      'face '((t ( :background "#0F0"))))
-				(propertize " not "
-					    'face '((t ( :background "#F00"))))))
-		      mode-line-format))
+		'((:eval
+		   (if god-local-mode
+		       (propertize " god " 'face '((t (:background "#0F0"))))
+		     (propertize " not " 'face '((t (:background "#F00"))))))
+		  "%e"
+		  mode-line-front-space
+		  (:propertize
+		   ("" mode-line-mule-info mode-line-client mode-line-modified
+		    mode-line-remote mode-line-window-dedicated)
+		   display
+		   (min-width (6.0)))
+		  mode-line-frame-identification
+		  mode-line-buffer-identification
+		  "   "
+		  mode-line-position
+		  (project-mode-line project-mode-line-format)
+		  (vc-mode vc-mode)
+		  "  "
+		  mode-line-modes
+		  mode-line-misc-info
+		  mode-line-end-spaces))
 
   ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
   (global-set-key (kbd "C-z") #'god-local-mode)
