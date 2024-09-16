@@ -47,6 +47,15 @@ or go back to just one window (by deleting all but the selected window)."
 ;;     (funcall fun)))
 ;; (advice-add #'keyboard-escape-quit :around #'+keyboard-escape-quit-adv)
 
+(keymap-global-set "C-M-n" #'down-list)
+
+(defun jepson/up-list (&rest _)
+  (interactive)
+  (up-list)
+  (backward-sexp nil t))
+
+(keymap-global-set "C-M-p" #'jepson/up-list)
+
 (setq frame-resize-pixelwise t
       browse-url-browser-function #'eww-browse-url
       overriding-text-conversion-style nil
