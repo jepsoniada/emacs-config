@@ -14,6 +14,16 @@
 (push "/data/data/com.termux/files/usr/bin"
       exec-path)
 
+;;; util
+
+(defun func-def (function-symbol)
+  "return lisp function definition"
+  (car (read-from-string (save-window-excursion
+			   (find-function function-symbol)
+			   (set-mark (point))
+			   (forward-sexp)
+			   (buffer-substring-no-properties (mark) (point))))))
+
 ;;; keybindings
 (defun keyboard-escape-quit ()
   "Exit the current \"mode\" (in a generalized sense of the word).
@@ -313,6 +323,11 @@ This function is called by `org-babel-execute-src-block'."
       :sort-fn fn)
     (ivy-configure 'execute-extended-command
       :sort-fn fn)))
+
+(when (and (ignore-errors (require 'calendar))
+	   (ignore-errors (require 'treepy)))
+  (eval (treepy-prewalk-replace '((mode-line-format . header-line-format))
+				(func-def 'calendar-update-mode-line))))
 
 (when (ignore-errors (require 'repeat))
   (repeat-mode 1)
