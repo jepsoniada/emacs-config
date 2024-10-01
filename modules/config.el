@@ -226,6 +226,7 @@ or go back to just one window (by deleting all but the selected window)."
 
 (when (ignore-errors (and (require 'titan-mode)
 			  (not (null (getenv "TITAN")))))
+  (keymap-set isearch-mode-map "<escape>" 'titan-mode-change-modifiers)
   (setq-default mode-line-format
 		'((:eval
 		   (propertize (format " %s%s%s%s%s%s%s "
