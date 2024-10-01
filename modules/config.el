@@ -169,6 +169,15 @@ or go back to just one window (by deleting all but the selected window)."
 
 (when (ignore-errors (require 'simple-httpd)))
 
+(when (ignore-errors (require 'paredit))
+  (keymap-set paredit-mode-map "C-j" nil)
+  (keymap-set paredit-mode-map "C-M-b" nil)
+  (keymap-set paredit-mode-map "C-M-d" nil)
+  (keymap-set paredit-mode-map "C-M-f" nil)
+  (keymap-set paredit-mode-map "C-M-n" nil)
+  (keymap-set paredit-mode-map "C-M-p" nil)
+  (keymap-set paredit-mode-map "C-M-u" nil))
+
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
 	   (ignore-errors (require 'god-mode-isearch))
