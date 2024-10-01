@@ -92,7 +92,9 @@ or go back to just one window (by deleting all but the selected window)."
       touch-screen-display-keyboard t)
 (electric-pair-mode t)
 
+;;;indent
 
+(put 'if 'lisp-indent-function 1)
 
 ;;; org mode
 (when (ignore-errors (require 'org))
