@@ -24,6 +24,26 @@
 			   (forward-sexp)
 			   (buffer-substring-no-properties (mark) (point))))))
 
+(defmacro |> (&rest funcs)
+  (cl-loop for func in (reverse funcs)
+	   
+	   if (and (listp func)
+		   (length> func 0))
+	   for result = `(let ((% ,func)) %)
+	   then `(let ((% ,func)) ,result)
+	   
+	   else if (null func)
+	   return (error "empty function")
+	   
+	   else if (symbolp func)
+	   for result = `(let ((% (,func %))) %)
+	   then `(let ((% (,func %))) ,result)
+	   
+	   else
+	   return (error "not implemented")
+	   
+	   finally return `(lambda (%) ,result)))
+
 ;;; keybindings
 (defun keyboard-escape-quit ()
   "Exit the current \"mode\" (in a generalized sense of the word).
