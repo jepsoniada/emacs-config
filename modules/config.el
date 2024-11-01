@@ -149,9 +149,9 @@ or go back to just one window (by deleting all but the selected window)."
     (setf ivy-sort-functions-alist `((t . ,fn))))
 
   (defun ivy-completing-read (prompt collection
-                            &optional predicate require-match initial-input
-                              history def inherit-input-method)
-  "Read a string in the minibuffer, with completion.
+				     &optional predicate require-match initial-input
+				     history def inherit-input-method)
+    "Read a string in the minibuffer, with completion.
 
 This interface conforms to `completing-read' and can be used for
 `completing-read-function'.
@@ -164,10 +164,10 @@ INITIAL-INPUT is a string inserted into the minibuffer initially.
 HISTORY is a list of previously selected inputs.
 DEF is the default value.
 INHERIT-INPUT-METHOD is currently ignored."
-  (let ((handler
-         (and (< ivy-completing-read-ignore-handlers-depth (minibuffer-depth))
-              (assq this-command ivy-completing-read-handlers-alist))))
-    (if handler
+    (let ((handler
+           (and (< ivy-completing-read-ignore-handlers-depth (minibuffer-depth))
+		(assq this-command ivy-completing-read-handlers-alist))))
+      (if handler
         (let ((completion-in-region-function #'completion--in-region)
               (ivy-completing-read-ignore-handlers-depth (1+ (minibuffer-depth))))
           (funcall (cdr handler)
@@ -175,40 +175,40 @@ INHERIT-INPUT-METHOD is currently ignored."
                    predicate require-match
                    initial-input history
                    def inherit-input-method))
-      ;; See the doc of `completing-read'.
-      (when (consp history)
-        (when (numberp (cdr history))
-          (setq initial-input (nth (1- (cdr history))
-                                   (symbol-value (car history)))))
-        (setq history (car history)))
-      (when (consp def)
-        (setq def (car def)))
-      (let ((str (ivy-read
-                  prompt collection
-                  :predicate predicate
-                  :require-match (and collection require-match)
-                  :initial-input
-                  (cond ((consp initial-input)
-                         (car initial-input))
-                        ((and (stringp initial-input)
-                              (not (eq collection #'read-file-name-internal)))
-                         (ivy--string-replace "+" "\\+" initial-input))
-                        (initial-input))
-                  :preselect def
-                  :def def
-                  :history history
-                  :keymap nil
-                  :dynamic-collection ivy-completing-read-dynamic-collection
-                  :extra-props '(:caller ivy-completing-read)
-                  :caller (if (and collection (symbolp collection))
+	;; See the doc of `completing-read'.
+	(when (consp history)
+          (when (numberp (cdr history))
+            (setq initial-input (nth (1- (cdr history))
+                                     (symbol-value (car history)))))
+          (setq history (car history)))
+	(when (consp def)
+          (setq def (car def)))
+	(let ((str (ivy-read
+                    prompt collection
+                    :predicate predicate
+                    :require-match (and collection require-match)
+                    :initial-input
+                    (cond ((consp initial-input)
+                           (car initial-input))
+                          ((and (stringp initial-input)
+				(not (eq collection #'read-file-name-internal)))
+                           (ivy--string-replace "+" "\\+" initial-input))
+                          (initial-input))
+                    :preselect def
+                    :def def
+                    :history history
+                    :keymap nil
+                    :dynamic-collection ivy-completing-read-dynamic-collection
+                    :extra-props '(:caller ivy-completing-read)
+                    :caller (if (and collection (symbolp collection))
                               collection
                               this-command)
-		  :sort t)))
-        (if (string= str "")
+		    :sort t)))
+          (if (string= str "")
             ;; For `completing-read' compat, return the first element of
             ;; DEFAULT, if it is a list; "", if DEFAULT is nil; or DEFAULT.
             (or def "")
-          str))))))
+            str))))))
 
 (when (and (ignore-errors (require 'calendar))
 	   (ignore-errors (require 'treepy)))
@@ -317,7 +317,7 @@ INHERIT-INPUT-METHOD is currently ignored."
 					     ""))
 				       (if (eq nil titan-mode--current-modifiers) "-" ""))
 			       'face `((t (:background ,(if titan-mode
-							    "#0F0"
+							  "#0F0"
 							  "#F00")))))
 		   )
 		  "%e"
