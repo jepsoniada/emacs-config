@@ -243,11 +243,11 @@ INHERIT-INPUT-METHOD is currently ignored."
 (when (and (ignore-errors (require 'god-mode))
 	   (ignore-errors (require 'god-mode-isearch))
 	   (null (getenv "TITAN")))
+  (add-to-list 'window-selection-change-functions
+	       (lambda (window-or-frame)
+		 (when (not (minibufferp))
+			(god-local-mode 1))))
 
-  ;; (god-mode-all 1)
-  (add-to-list 'window-state-change-hook (lambda nil
-					   (when (not (minibufferp))
-					     (god-local-mode 1))))
   (setq god-exempt-major-modes nil
 	god-exempt-predicates nil)
   (setq-default mode-line-format
