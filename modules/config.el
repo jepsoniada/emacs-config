@@ -109,9 +109,15 @@ or go back to just one window (by deleting all but the selected window)."
 		  (org-level-7 . 1.0)
 		  (org-level-8 . 1.0)))
     (set-face-attribute (car face) nil :height (cdr face)))
+
   (setq org-src-window-setup 'current-window
 	org-startup-indented t
 	org-default-notes-file (concat org-directory "/notes.org"))
+
+  (add-to-list 'org-mode-hook
+	       (lambda nil
+		 (visual-line-mode 1)))
+
   (define-key org-mode-map (kbd "C-<") #'org-metaleft)
   (define-key org-mode-map (kbd "C->") #'org-metaright))
 
