@@ -121,6 +121,9 @@ or go back to just one window (by deleting all but the selected window)."
   (define-key org-mode-map (kbd "C-<") #'org-metaleft)
   (define-key org-mode-map (kbd "C->") #'org-metaright))
 
+(when (ignore-errors (require 'dired))
+  (setf dired-listing-switches "-hAl"))
+
 (ignore-errors (require 'tramp))
 
 (ignore-errors (require 'tetris))
@@ -252,7 +255,7 @@ INHERIT-INPUT-METHOD is currently ignored."
   (add-to-list 'window-selection-change-functions
 	       (lambda (window-or-frame)
 		 (when (not (minibufferp))
-			(god-local-mode 1))))
+		   (god-local-mode 1))))
 
   (setq god-exempt-major-modes nil
 	god-exempt-predicates nil)
