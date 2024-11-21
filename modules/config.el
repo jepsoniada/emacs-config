@@ -248,6 +248,9 @@ INHERIT-INPUT-METHOD is currently ignored."
   (keymap-set paredit-mode-map "C-M-p" nil)
   (keymap-set paredit-mode-map "C-M-u" nil))
 
+(when (ignore-errors (require 'find-dired))
+  (setf find-ls-option `("-exec ls -ldh {} +" . "-ldh")))
+
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
 	   (ignore-errors (require 'god-mode-isearch))
