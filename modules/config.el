@@ -112,6 +112,7 @@ or go back to just one window (by deleting all but the selected window)."
 
   (setq org-src-window-setup 'current-window
 	org-startup-indented t
+	org-startup-with-inline-images t
 	org-default-notes-file (concat org-directory "/notes.org"))
 
   (add-to-list 'org-mode-hook
