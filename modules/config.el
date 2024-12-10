@@ -99,8 +99,7 @@ or go back to just one window (by deleting all but the selected window)."
 ;;; org mode
 (when (ignore-errors (require 'org))
 
-  (dolist (face '(
-		  (org-level-1 . 2.0)
+  (dolist (face '((org-level-1 . 2.0)
 		  (org-level-2 . 1.75)
 		  (org-level-3 . 1.5)
 		  (org-level-4 . 1.25)
@@ -120,7 +119,10 @@ or go back to just one window (by deleting all but the selected window)."
 		 (visual-line-mode 1)))
 
   (define-key org-mode-map (kbd "C-<") #'org-metaleft)
-  (define-key org-mode-map (kbd "C->") #'org-metaright))
+  (define-key org-mode-map (kbd "C->") #'org-metaright)
+
+  (when (ignore-errors (require 'valign))
+    (add-hook 'org-mode-hook #'valign-mode)))
 
 (when (ignore-errors (require 'dired))
   (setf dired-listing-switches "-hAl"))
