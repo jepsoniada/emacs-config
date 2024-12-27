@@ -23,13 +23,15 @@
 		 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-hide-emphasis-markers t)
  '(package-selected-packages
-   '(avy chemtable d-mode dash elnode evil geiser-guile glsl-mode gnuplot
-	 gnuplot-mode god-mode ivy j-mode magit mini-modeline
-	 monkeytype org-contrib package-lint paredit rust-mode
-	 scala-mode sly smalltalk-mode titan-mode tramp typetest
-	 which-key))
+   '(ada-mode ada-ts-mode auctex avy chemtable d-mode dash elnode evil
+	      geiser-guile glsl-mode gnuplot gnuplot-mode god-mode ivy
+	      j-mode magit mini-modeline monkeytype ob-J ob-ada-spark
+	      org-contrib package-lint paredit qrencode rust-mode
+	      scala-mode sly smalltalk-mode titan-mode tramp typetest
+	      valign which-key))
  '(package-vc-selected-packages
-   '((typetest :url "https://github.com/jepsoniada/typetest.git")
+   '((ob-J :url "https://github.com/jepsoniada/ob-J.git")
+     (typetest :url "https://github.com/jepsoniada/typetest.git")
      (titan-mode :url "https://github.com/jepsoniada/titan-mode.git")))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
