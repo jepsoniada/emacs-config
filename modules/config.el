@@ -127,7 +127,51 @@ or go back to just one window (by deleting all but the selected window)."
     (add-hook 'org-mode-hook #'valign-mode)))
 
 (when (ignore-errors (require 'dired))
-  (setf dired-listing-switches "-hAl"))
+  (setf dired-listing-switches "-hAl")
+
+  (defun jepson/dired-mark  (arg &optional interactive)
+    (interactive (list current-prefix-arg t) dired-mode)
+    (dired-mark arg (when interactive interactive)))
+  (defun jepson/dired-unmark (arg &optional interactive)
+    (interactive (list current-prefix-arg t) dired-mode)
+    (dired-unmark arg (when interactive interactive)))
+  (defun jepson/dired-unmark-all-marks ()
+    (interactive nil dired-mode)
+    (dired-unmark-all-marks))
+  
+  (keymap-set dired-mode-map "m" #'jepson/dired-mark)
+  (keymap-set dired-mode-map "u" #'jepson/dired-unmark)
+  (keymap-set dired-mode-map "U" #'jepson/dired-unmark-all-marks)
+  (keymap-set dired-mode-map "* n" #'dired-next-marked-file)
+  (keymap-set dired-mode-map "* p" #'dired-prev-marked-file)
+  (keymap-set dired-mode-map "* r" #'dired-mark-files-regexp)
+  (keymap-set dired-mode-map "TAB" #'dired-hide-subdir)
+  (keymap-set dired-mode-map "]" #'dired-next-subdir)
+  (keymap-set dired-mode-map "[" #'dired-prev-subdir)
+
+  (defvar-keymap dired-subdir-repeat-map
+    :repeat t
+    "n" #'dired-next-subdir
+    "p" #'dired-prev-subdir
+    "TAB" #'dired-hide-subdir
+    "s" #'dired-mark-subdir-files)
+  (defvar-keymap dired-mark-repeat-map
+    :repeat t
+    "n" #'dired-next-marked-file
+    "p" #'dired-prev-marked-file
+    "U" #'dired-unmark-all-marks
+    "%" #'dired-mark-files-regexp
+    "r" #'dired-mark-files-regexp
+    "*" #'dired-mark-executables
+    "/" #'dired-mark-directories
+    "@" #'dired-mark-symlinks
+    "N" #'dired-number-of-marked-files
+    "c" #'dired-change-marks
+    "m" #'dired-mark
+    "s" #'dired-mark-subdir-files
+    "t" #'dired-toggle-marks
+    "u" #'dired-unmark
+    "DEL" #'dired-unmark-backward))
 
 (ignore-errors (require 'tramp))
 
