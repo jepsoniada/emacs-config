@@ -86,6 +86,8 @@ or go back to just one window (by deleting all but the selected window)."
 
 (keymap-global-set "C-M-p" #'jepson/up-list)
 
+(keymap-global-set "M-k" #'kill-whole-line)
+
 (setq frame-resize-pixelwise t
       browse-url-browser-function #'eww-browse-url
       overriding-text-conversion-style nil
