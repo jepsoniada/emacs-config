@@ -10,7 +10,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(tsdh-light))
+ '(custom-enabled-themes '(nano-light))
+ '(custom-safe-themes
+   '("e7820b899036ae7e966dcaaec29fd6b87aef253748b7de09e74fdc54407a7a02"
+     default))
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
  '(geiser-guile-binary "guile2.2")
  '(menu-bar-mode nil)
@@ -25,10 +28,11 @@
  '(package-selected-packages
    '(ada-mode ada-ts-mode auctex avy chemtable d-mode dash elnode evil
 	      geiser-guile glsl-mode gnuplot gnuplot-mode god-mode ivy
-	      j-mode magit mini-modeline monkeytype ob-J ob-ada-spark
-	      org-contrib package-lint paredit qrencode rust-mode
-	      scala-mode sly smalltalk-mode titan-mode tramp typetest
-	      valign which-key))
+	      j-mode magit mini-modeline minimap monkeytype nano-theme
+	      ob-J ob-ada-spark org-contrib package-lint paredit
+	      qrencode rust-mode scala-mode sly smalltalk-mode
+	      system-packages titan-mode tramp typetest valign vertico
+	      which-key))
  '(package-vc-selected-packages
    '((ob-J :url "https://github.com/jepsoniada/ob-J.git")
      (typetest :url "https://github.com/jepsoniada/typetest.git")

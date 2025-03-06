@@ -7,6 +7,10 @@
 	     '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
+;;; exec path
+(push "/home/jepson/.local/bin"
+      exec-path)
+
 ;;; termux compatibility
 (setenv "PATH" (format "%s:%s"
 		       "/data/data/com.termux/files/usr/bin"
@@ -43,6 +47,18 @@
 	   return (error "not implemented")
 	   
 	   finally return `(lambda (%) ,result)))
+
+(add-to-list 'window-state-change-hook
+	     (lambda nil
+	       (set-register ?@ (buffer-file-name (current-buffer)))))
+
+(define-minor-mode just-compile-mode
+  ""
+  :keymap (define-keymap
+	    "C-c C-c" (lambda (&optional arg) (interactive "p")
+			(if (= arg 1)
+			  (call-interactively #'recompile)
+			  (call-interactively #'compile)))))
 
 ;;; keybindings
 (defun keyboard-escape-quit ()
@@ -94,7 +110,13 @@ or go back to just one window (by deleting all but the selected window)."
       touch-screen-display-keyboard t)
 (electric-pair-mode t)
 
-;;;indent
+;;; advices
+
+(defun jepson/no-undo (fn &rest rest)
+  (with-undo-amalgamate (apply fn rest)))
+(advice-add 'apply-macro-to-region-lines :around 'jepson/no-undo)
+
+;;; elisp indent
 
 (put 'if 'lisp-indent-function 1)
 
@@ -184,8 +206,8 @@ or go back to just one window (by deleting all but the selected window)."
   (keymap-global-set "C-; C-j" 'avy-goto-char)
   (keymap-global-set "C-; C-l" 'avy-goto-line))
 
-(when (ignore-errors (require 'counsel))
-  (counsel-mode))
+;; (when (ignore-errors (require 'counsel))
+;;   (counsel-mode))
 
 (define-minor-mode si-mode
   "testing selfinsert???")
@@ -197,76 +219,79 @@ or go back to just one window (by deleting all but the selected window)."
 					     this)))
 		    map))
 
-(setf ivy-mode-map (make-sparse-keymap)) ; needs to be set before require
-(when (ignore-errors (require 'ivy))
-  (ivy-mode 1)
+(when (ignore-errors (require 'vertico))
+  (vertico-mode))
 
-  (let* ((fn (lambda (a b)
-	       (< (length (if (consp a) (car a) a))
-		  (length (if (consp b) (car b) b))))))
-    (setf ivy-sort-functions-alist `((t . ,fn))))
+;; (setf ivy-mode-map (make-sparse-keymap)) ; needs to be set before require
+;; (when (ignore-errors (require 'ivy))
+;;   (ivy-mode 1)
 
-  (defun ivy-completing-read (prompt collection
-				     &optional predicate require-match initial-input
-				     history def inherit-input-method)
-    "Read a string in the minibuffer, with completion.
+;;   (let* ((fn (lambda (a b)
+;; 	       (< (length (if (consp a) (car a) a))
+;; 		  (length (if (consp b) (car b) b))))))
+;;     (setf ivy-sort-functions-alist `((t . ,fn))))
 
-This interface conforms to `completing-read' and can be used for
-`completing-read-function'.
+;;   (defun ivy-completing-read (prompt collection
+;; 				     &optional predicate require-match initial-input
+;; 				     history def inherit-input-method)
+;;     "Read a string in the minibuffer, with completion.
 
-PROMPT is a string that normally ends in a colon and a space.
-COLLECTION is either a list of strings, an alist, an obarray, or a hash table.
-PREDICATE limits completion to a subset of COLLECTION.
-REQUIRE-MATCH is a boolean value or a symbol.  See `completing-read'.
-INITIAL-INPUT is a string inserted into the minibuffer initially.
-HISTORY is a list of previously selected inputs.
-DEF is the default value.
-INHERIT-INPUT-METHOD is currently ignored."
-    (let ((handler
-           (and (< ivy-completing-read-ignore-handlers-depth (minibuffer-depth))
-		(assq this-command ivy-completing-read-handlers-alist))))
-      (if handler
-        (let ((completion-in-region-function #'completion--in-region)
-              (ivy-completing-read-ignore-handlers-depth (1+ (minibuffer-depth))))
-          (funcall (cdr handler)
-                   prompt collection
-                   predicate require-match
-                   initial-input history
-                   def inherit-input-method))
-	;; See the doc of `completing-read'.
-	(when (consp history)
-          (when (numberp (cdr history))
-            (setq initial-input (nth (1- (cdr history))
-                                     (symbol-value (car history)))))
-          (setq history (car history)))
-	(when (consp def)
-          (setq def (car def)))
-	(let ((str (ivy-read
-                    prompt collection
-                    :predicate predicate
-                    :require-match (and collection require-match)
-                    :initial-input
-                    (cond ((consp initial-input)
-                           (car initial-input))
-                          ((and (stringp initial-input)
-				(not (eq collection #'read-file-name-internal)))
-                           (ivy--string-replace "+" "\\+" initial-input))
-                          (initial-input))
-                    :preselect def
-                    :def def
-                    :history history
-                    :keymap nil
-                    :dynamic-collection ivy-completing-read-dynamic-collection
-                    :extra-props '(:caller ivy-completing-read)
-                    :caller (if (and collection (symbolp collection))
-                              collection
-                              this-command)
-		    :sort t)))
-          (if (string= str "")
-            ;; For `completing-read' compat, return the first element of
-            ;; DEFAULT, if it is a list; "", if DEFAULT is nil; or DEFAULT.
-            (or def "")
-            str))))))
+;; This interface conforms to `completing-read' and can be used for
+;; `completing-read-function'.
+
+;; PROMPT is a string that normally ends in a colon and a space.
+;; COLLECTION is either a list of strings, an alist, an obarray, or a hash table.
+;; PREDICATE limits completion to a subset of COLLECTION.
+;; REQUIRE-MATCH is a boolean value or a symbol.  See `completing-read'.
+;; INITIAL-INPUT is a string inserted into the minibuffer initially.
+;; HISTORY is a list of previously selected inputs.
+;; DEF is the default value.
+;; INHERIT-INPUT-METHOD is currently ignored."
+;;     (let ((handler
+;;            (and (< ivy-completing-read-ignore-handlers-depth (minibuffer-depth))
+;; 		(assq this-command ivy-completing-read-handlers-alist))))
+;;       (if handler
+;;         (let ((completion-in-region-function #'completion--in-region)
+;;               (ivy-completing-read-ignore-handlers-depth (1+ (minibuffer-depth))))
+;;           (funcall (cdr handler)
+;;                    prompt collection
+;;                    predicate require-match
+;;                    initial-input history
+;;                    def inherit-input-method))
+;; 	;; See the doc of `completing-read'.
+;; 	(when (consp history)
+;;           (when (numberp (cdr history))
+;;             (setq initial-input (nth (1- (cdr history))
+;;                                      (symbol-value (car history)))))
+;;           (setq history (car history)))
+;; 	(when (consp def)
+;;           (setq def (car def)))
+;; 	(let ((str (ivy-read
+;;                     prompt collection
+;;                     :predicate predicate
+;;                     :require-match (and collection require-match)
+;;                     :initial-input
+;;                     (cond ((consp initial-input)
+;;                            (car initial-input))
+;;                           ((and (stringp initial-input)
+;; 				(not (eq collection #'read-file-name-internal)))
+;;                            (ivy--string-replace "+" "\\+" initial-input))
+;;                           (initial-input))
+;;                     :preselect def
+;;                     :def def
+;;                     :history history
+;;                     :keymap nil
+;;                     :dynamic-collection ivy-completing-read-dynamic-collection
+;;                     :extra-props '(:caller ivy-completing-read)
+;;                     :caller (if (and collection (symbolp collection))
+;;                               collection
+;;                               this-command)
+;; 		    :sort t)))
+;;           (if (string= str "")
+;;             ;; For `completing-read' compat, return the first element of
+;;             ;; DEFAULT, if it is a list; "", if DEFAULT is nil; or DEFAULT.
+;;             (or def "")
+;;             str))))))
 
 (when (and (ignore-errors (require 'calendar))
 	   (ignore-errors (require 'treepy)))
@@ -295,10 +320,15 @@ INHERIT-INPUT-METHOD is currently ignored."
   (keymap-set paredit-mode-map "C-M-f" nil)
   (keymap-set paredit-mode-map "C-M-n" nil)
   (keymap-set paredit-mode-map "C-M-p" nil)
-  (keymap-set paredit-mode-map "C-M-u" nil))
+  (keymap-set paredit-mode-map "C-M-u" nil)
+
+  (add-to-list 'lisp-data-mode-hook
+	       (lambda nil (paredit-mode 1))))
 
 (when (ignore-errors (require 'find-dired))
   (setf find-ls-option `("-exec ls -ldh {} +" . "-ldh")))
+
+(when (ignore-errors (require 'line-mark)))
 
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))

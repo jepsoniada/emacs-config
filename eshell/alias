@@ -1,0 +1,4 @@
+alias auth_xuid  $*
+alias clientid  $*
+alias uuid  $*
+alias sqlcmd podman exec -t sql1 /opt/mssql-tools18/bin/sqlcmd $*
