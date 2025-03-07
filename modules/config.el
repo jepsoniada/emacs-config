@@ -144,6 +144,7 @@ or go back to just one window (by deleting all but the selected window)."
       overriding-text-conversion-style nil
       touch-screen-display-keyboard t)
 (electric-pair-mode t)
+(dynamic-completion-mode t)
 
 ;;; advices
 
