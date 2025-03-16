@@ -366,6 +366,10 @@ or go back to just one window (by deleting all but the selected window)."
 
 (when (ignore-errors (require 'line-mark)))
 
+(use-package nano-theme
+  :ensure nil
+  :defer t)
+
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
 	   (ignore-errors (require 'god-mode-isearch))
