@@ -20,23 +20,24 @@
      default))
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
  '(geiser-guile-binary "guile2.2")
+ '(indent-tabs-mode nil)
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
  '(org-babel-J-command "~/.local/bin/jconsole")
  '(org-format-latex-options
    '(:foreground default :background default :scale 4.0 :html-foreground
-		 "Black" :html-background "Transparent" :html-scale
-		 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+                 "Black" :html-background "Transparent" :html-scale
+                 1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-hide-emphasis-markers t)
  '(package-selected-packages
-   '(ada-mode ada-ts-mode auctex avy chemtable d-mode dash elnode evil
-	      geiser-guile glsl-mode gnuplot gnuplot-mode god-mode ivy
-	      j-mode magit mini-modeline minimap monkeytype nano-theme
-	      ob-J ob-ada-spark package-lint paredit pdf-tools
-	      qrencode rust-mode scala-mode sly smalltalk-mode
-	      system-packages titan-mode tramp typetest valign vertico
-	      which-key))
+   '(ada-mode ada-ts-mode auctex avy chemtable crux d-mode dash elnode
+              evil geiser-guile glsl-mode gnuplot gnuplot-mode
+              god-mode ivy j-mode magit mini-modeline minimap
+              monkeytype nano-theme ob-J ob-ada-spark ob-j
+              package-lint paredit pdf-tools qrencode rust-mode
+              scala-mode sly smalltalk-mode system-packages titan-mode
+              tramp typetest valign vertico which-key))
  '(package-vc-selected-packages
    '((ob-J :url "https://github.com/jepsoniada/ob-J.git")
      (typetest :url "https://github.com/jepsoniada/typetest.git")
