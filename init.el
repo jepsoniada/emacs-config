@@ -18,9 +18,11 @@
      "de8f2d8b64627535871495d6fe65b7d0070c4a1eb51550ce258cd240ff9394b0"
      "e7820b899036ae7e966dcaaec29fd6b87aef253748b7de09e74fdc54407a7a02"
      default))
+ '(dired-isearch-filenames t)
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
  '(geiser-guile-binary "guile2.2")
  '(indent-tabs-mode nil)
+ '(isearch-wrap-pause 'no)
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
