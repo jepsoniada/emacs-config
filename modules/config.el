@@ -372,7 +372,6 @@ or go back to just one window (by deleting all but the selected window)."
 
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
-	   (ignore-errors (require 'god-mode-isearch))
 	   (null (getenv "TITAN")))
   (add-to-list 'window-selection-change-functions
 	       (lambda (window-or-frame)
@@ -411,10 +410,11 @@ or go back to just one window (by deleting all but the selected window)."
   (define-key god-local-mode-map (kbd ".") #'repeat)
   (define-key god-local-mode-map (kbd "z") #'god-local-mode)
 
-  (define-key isearch-mode-map (kbd "C-z") 'god-mode-isearch-activate)
-  (define-key isearch-mode-map (kbd "π") 'god-mode-isearch-activate)
-  (define-key god-mode-isearch-map (kbd "z") 'god-mode-isearch-disable)
-  (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable))
+  (when (ignore-errors (require 'god-mode-isearch))
+    (define-key isearch-mode-map (kbd "C-z") 'god-mode-isearch-activate)
+    (define-key isearch-mode-map (kbd "π") 'god-mode-isearch-activate)
+    (define-key god-mode-isearch-map (kbd "z") 'god-mode-isearch-disable)
+    (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable)))
 
 (when (ignore-errors (and (require 'titan-mode)
 			  (not (null (getenv "TITAN")))))
