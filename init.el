@@ -36,12 +36,14 @@
    '(ada-mode ada-ts-mode auctex avy chemtable crux d-mode dash elnode
               evil geiser-guile glsl-mode gnuplot gnuplot-mode
               god-mode ivy j-mode magit mini-modeline minimap
-              monkeytype nano-theme ob-J ob-ada-spark ob-j
-              package-lint paredit pdf-tools qrencode rust-mode
-              scala-mode sly smalltalk-mode system-packages titan-mode
-              tramp typetest valign vertico which-key))
+              monkeytype nano-theme ob-J ob-ada-spark package-lint
+              paredit pdf-tools qrencode rust-mode scala-mode sly
+              smalltalk-mode steamacs system-packages titan-mode tramp
+              typetest valign vertico which-key))
  '(package-vc-selected-packages
-   '((ob-J :url "https://github.com/jepsoniada/ob-J.git")
+   '((steamacs :vc-backend Git :url
+               "https://github.com/jepsoniada/steamacs.git")
+     (ob-J :url "https://github.com/jepsoniada/ob-J.git")
      (typetest :url "https://github.com/jepsoniada/typetest.git")
      (titan-mode :url "https://github.com/jepsoniada/titan-mode.git")))
  '(scroll-bar-mode nil)
