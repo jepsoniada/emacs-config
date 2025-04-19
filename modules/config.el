@@ -368,9 +368,9 @@ or go back to just one window (by deleting all but the selected window)."
   :ensure nil
   :defer t)
 
-(use-package magit
-  :bind (:map magit-mode-map
-              ("<escape>" . top-level)))
+(use-package transient
+  :bind (:map transient-map
+              ("<escape>" . transient-quit-all)))
 
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
