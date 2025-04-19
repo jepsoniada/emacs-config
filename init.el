@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (add-to-list 'load-path "~/.config/emacs/modules")
 
 ;;; features
@@ -27,7 +29,7 @@
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
- '(org-babel-J-command "~/.local/bin/jconsole")
+ '(org-babel-J-command "~/.nix-profile/bin/jconsole")
  '(org-format-latex-options
    '(:foreground default :background default :scale 4.0 :html-foreground
                  "Black" :html-background "Transparent" :html-scale

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (add-to-list 'load-path "~/.config/emacs/lisp")
 
 ;;; melpa (bleading-edge)
@@ -6,10 +8,6 @@
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
-
-;;; exec path
-(push "/home/jepson/.local/bin"
-      exec-path)
 
 ;;; termux compatibility
 (setenv "PATH" (format "%s:%s"
