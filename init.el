@@ -23,6 +23,7 @@
  '(geiser-guile-binary "guile2.2")
  '(indent-tabs-mode nil)
  '(isearch-wrap-pause 'no)
+ '(magit-clone-always-transient t)
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
