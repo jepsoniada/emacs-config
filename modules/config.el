@@ -154,6 +154,24 @@ or go back to just one window (by deleting all but the selected window)."
 
 (put 'if 'lisp-indent-function 1)
 
+;;; loader for custom indentation
+
+(defun jepson/load-indent nil
+  (interactive)
+  (let* ((indent-dir (file-name-concat (file-name-directory user-init-file) "indent"))
+         (files (directory-files indent-dir))
+         (name (symbol-name major-mode)))
+    (ignore-error file-error
+      (load-file (file-name-concat indent-dir
+                                   (concat (substring name
+                                                      0
+                                                      (string-search "-mode" name))
+                                           ".indent.el"))))))
+
+(add-hook 'prog-mode-hook (lambda nil
+                            (let ((hook (intern (concat (symbol-name major-mode) "-hook"))))
+                              (add-hook hook #'jepson/load-indent))))
+
 ;;; org mode
 (when (ignore-errors (require 'org))
 
