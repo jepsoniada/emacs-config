@@ -36,12 +36,12 @@
                  1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-hide-emphasis-markers t)
  '(package-selected-packages
-   '(ada-mode ada-ts-mode auctex avy chemtable crux d-mode dash elnode
-              evil geiser-guile glsl-mode gnuplot gnuplot-mode
-              god-mode ivy j-mode magit mini-modeline minimap nix-mode
-              ob-J ob-ada-spark package-lint paredit pdf-tools
-              qrencode rust-mode scala-mode sly smalltalk-mode
-              steamacs system-packages titan-mode tramp
+   '(ada-mode ada-ts-mode auctex avy chemtable consult crux d-mode dash
+              elnode evil geiser-guile glsl-mode gnuplot gnuplot-mode
+              god-mode haskell-mode ivy j-mode magit mini-modeline
+              minimap nix-mode ob-J ob-ada-spark package-lint paredit
+              pdf-tools qrencode rust-mode scala-mode sly
+              smalltalk-mode steamacs system-packages titan-mode tramp
               typescript-mode typetest valign vertico which-key))
  '(package-vc-selected-packages
    '((titan-mode :url "https://github.com/jepsoniada/titan-mode.git")
