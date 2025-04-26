@@ -85,6 +85,25 @@
       (nconc (completion-pcm--hilit-commonality pattern all)
              (length prefix)))))
 
+(define-minor-mode project-mode
+  "do your job NOW"
+  :keymap (define-keymap
+	    "<remap> <find-file>"                #'project-find-file
+            "C-c C-f"                            #'find-file
+            "<remap> <list-buffers>"             #'project-list-buffers
+            "C-c C-b"                            #'list-buffers
+            "<remap> <async-shell-command>"      #'project-async-shell-command
+            "C-c M-&"                            #'async-shell-command
+            "<remap> <switch-to-buffer>"         #'project-switch-to-buffer
+            "C-c b"                              #'switch-to-buffer
+            "<remap> <dired>"                    #'project-find-dir
+            "C-c d"                              #'dired
+            "C-c e"                              #'project-eshell
+            "<remap> <execute-extended-command>" #'project-execute-extended-command
+            "C-c M-x"                            #'execute-extended-command
+            "<remap> <save-some-buffers>"        #'project-save-some-buffers
+            "C-c s"                              #'save-some-buffers))
+
 ;;; completion
 
 (setf (alist-get 'ivy completion-styles-alist)
