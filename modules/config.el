@@ -59,31 +59,31 @@
 			  (call-interactively #'compile)))))
 
 (defun jepson/make-ivy-pattern (pattern)
-    (mapcan (lambda (elem)
-	      (if (stringp elem)
-		(seq-map (lambda (char)
-			   (if (eq char ? )
-			     'any
-			     (string char)))
-			 elem)))
-	    pattern))
-  (defun completion-ivy-try-completion (string table pred point)
-    (pcase-let ((`(,all ,pattern ,prefix ,suffix ,_carbounds)
-		 (completion-substring--all-completions
-                  string table pred point
-                  #'jepson/make-ivy-pattern)))
-      (if minibuffer-completing-file-name
-	(setq all (completion-pcm--filename-try-filter all)))
-      (completion-pcm--merge-try pattern all prefix suffix)))
+  (mapcan (lambda (elem)
+	    (if (stringp elem)
+	      (seq-map (lambda (char)
+			 (if (eq char ? )
+			   'any
+			   (string char)))
+		       elem)))
+	  pattern))
+(defun completion-ivy-try-completion (string table pred point)
+  (pcase-let ((`(,all ,pattern ,prefix ,suffix ,_carbounds)
+	       (completion-substring--all-completions
+                string table pred point
+                #'jepson/make-ivy-pattern)))
+    (if minibuffer-completing-file-name
+      (setq all (completion-pcm--filename-try-filter all)))
+    (completion-pcm--merge-try pattern all prefix suffix)))
 
-  (defun completion-ivy-all-completions (string table pred point)
-    (pcase-let ((`(,all ,pattern ,prefix ,_suffix ,_carbounds)
-		 (completion-substring--all-completions
-                  string table pred point
-                  #'jepson/make-ivy-pattern)))
-      (when all
-	(nconc (completion-pcm--hilit-commonality pattern all)
-               (length prefix)))))
+(defun completion-ivy-all-completions (string table pred point)
+  (pcase-let ((`(,all ,pattern ,prefix ,_suffix ,_carbounds)
+	       (completion-substring--all-completions
+                string table pred point
+                #'jepson/make-ivy-pattern)))
+    (when all
+      (nconc (completion-pcm--hilit-commonality pattern all)
+             (length prefix)))))
 
 ;;; completion
 
