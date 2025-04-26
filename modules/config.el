@@ -91,7 +91,7 @@
       '(completion-ivy-try-completion completion-ivy-all-completions
 				      "ivy like completion"))
 
-(setf completion-styles '(ivy))
+(setf completion-styles '(ivy partial-completion emacs22))
 
 ;;; keybindings
 (defun keyboard-escape-quit ()
