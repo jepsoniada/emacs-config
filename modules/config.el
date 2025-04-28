@@ -139,11 +139,6 @@ or go back to just one window (by deleting all but the selected window)."
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (define-key input-decode-map (kbd "<volume-down>") (kbd "<escape>"))
 (define-key input-decode-map (kbd "<volume-up>") (kbd "<tab>"))
-;; (defun +keyboard-escape-quit-adv (fun)
-;;   "Around advice for `keyboard-escape-quit' FUN. Preserve window configuration when pressing ESC."
-;;   (let ((buffer-quit-function (or buffer-quit-function #'ignore)))
-;;     (funcall fun)))
-;; (advice-add #'keyboard-escape-quit :around #'+keyboard-escape-quit-adv)
 
 (defun jepson/up-list (&rest _)
   (interactive)
@@ -299,27 +294,12 @@ or go back to just one window (by deleting all but the selected window)."
 
 (ignore-errors (require 'tramp))
 
-(ignore-errors (require 'tetris))
-
 (ignore-errors (require 'typetest))
 
 (when (ignore-errors (require 'avy))
 
   (keymap-global-set "C-; C-j" 'avy-goto-char)
   (keymap-global-set "C-; C-l" 'avy-goto-line))
-
-;; (when (ignore-errors (require 'counsel))
-;;   (counsel-mode))
-
-(define-minor-mode si-mode
-  "testing selfinsert???")
-
-(setf si-mode-map (let ((map (make-sparse-keymap)))
-		    (define-key map [remap self-insert-command]
-				(lambda () (let ((this (this-command-keys-vector)))
-					     (message (prin1-to-string this))
-					     this)))
-		    map))
 
 (when (ignore-errors (require 'vertico))
   (vertico-mode))
