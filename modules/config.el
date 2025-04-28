@@ -145,14 +145,42 @@ or go back to just one window (by deleting all but the selected window)."
 ;;     (funcall fun)))
 ;; (advice-add #'keyboard-escape-quit :around #'+keyboard-escape-quit-adv)
 
-(keymap-global-set "C-M-n" #'down-list)
-
 (defun jepson/up-list (&rest _)
   (interactive)
-  (up-list)
-  (backward-sexp nil t))
+  (pcase-let* ((`(_ _ _ ,strp _ _ _ _ ,left-outer) (syntax-ppss)))
+    (if strp
+      (goto-char left-outer)
+      (progn (up-list) (backward-sexp)))))
 
+(defun jepson/backward-sexp (&optional arg interactive)
+  (interactive "^p\nd")
+  (pcase-let* ((`(_ _ _ ,strp _ _ _ _ ,left-outer) (syntax-ppss))
+               (left-outer (when left-outer
+                             (save-excursion (goto-char left-outer)
+                                             (forward-char)
+                                             (point)))))
+    (if strp
+      (when (>= (scan-sexps (point) (- (or arg 1))) left-outer)
+        (goto-char left-outer))
+      (backward-sexp arg interactive))))
+
+(defun jepson/forward-sexp (&optional arg interactive)
+  (interactive "^p\nd")
+  (pcase-let* ((`(_ _ _ ,strp _ _ _ _ ,left-outer) (syntax-ppss))
+               (right-outer (when left-outer
+                              (save-excursion (goto-char left-outer)
+                                              (forward-sexp arg interactive)
+                                              (backward-char)
+                                              (point)))))
+    (if strp
+      (when (>= (scan-sexps (point) (or arg 1)) (or right-outer 0))
+        (goto-char right-outer))
+      (forward-sexp arg interactive))))
+
+(keymap-global-set "C-M-n" #'down-list)
 (keymap-global-set "C-M-p" #'jepson/up-list)
+(keymap-global-set "C-M-f" #'jepson/forward-sexp)
+(keymap-global-set "C-M-b" #'jepson/backward-sexp)
 
 (keymap-global-set "M-k" #'kill-whole-line)
 
@@ -376,10 +404,10 @@ or go back to just one window (by deleting all but the selected window)."
   (repeat-mode 1)
   (defvar-keymap lisp-traverse-sexp-repeat-map
     :repeat t
-    "f" #'forward-sexp
-    "C-f" #'forward-sexp
-    "b" #'backward-sexp
-    "C-b" #'backward-sexp
+    "f" #'jepson/forward-sexp
+    "C-f" #'jepson/forward-sexp
+    "b" #'jepson/backward-sexp
+    "C-b" #'jepson/backward-sexp
     "p" #'jepson/up-list
     "C-p" #'jepson/up-list
     "n" #'down-list
