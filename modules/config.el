@@ -156,6 +156,9 @@ or go back to just one window (by deleting all but the selected window)."
 
 (keymap-global-set "M-k" #'kill-whole-line)
 
+(keymap-global-set "M-n" #'minibuffer-next-completion)
+(keymap-global-set "M-p" #'minibuffer-previous-completion)
+
 (setq frame-resize-pixelwise t
       browse-url-browser-function #'eww-browse-url
       overriding-text-conversion-style nil
