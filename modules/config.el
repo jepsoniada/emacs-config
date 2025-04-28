@@ -1,7 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(add-to-list 'load-path "~/.config/emacs/lisp")
-
 ;;; melpa (bleading-edge)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (require 'package)
