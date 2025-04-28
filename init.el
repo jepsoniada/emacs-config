@@ -12,6 +12,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(browse-url-browser-function 'eww-browse-url)
  '(completion-pcm-leading-wildcard t)
  '(completion-pcm-word-delimiters " -_./:| ")
  '(custom-enabled-themes '(tango))
@@ -22,6 +23,9 @@
      default))
  '(dired-isearch-filenames t)
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
+ '(dynamic-completion-mode t)
+ '(electric-pair-mode t)
+ '(frame-resize-pixelwise t)
  '(geiser-guile-binary "guile2.2")
  '(indent-tabs-mode nil)
  '(isearch-wrap-pause 'no)
@@ -35,6 +39,7 @@
                  "Black" :html-background "Transparent" :html-scale
                  1.0 :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-hide-emphasis-markers t)
+ '(overriding-text-conversion-style nil t)
  '(package-selected-packages
    '(ada-mode ada-ts-mode auctex avy chemtable consult crux d-mode dash
               elnode evil expand-region geiser-guile glsl-mode gnuplot
@@ -50,8 +55,10 @@
      (ob-J :url "https://github.com/jepsoniada/ob-J.git")
      (steamacs :vc-backend Git :url
                "https://github.com/jepsoniada/steamacs.git")))
+ '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode nil)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(touch-screen-display-keyboard t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
