@@ -409,6 +409,9 @@ or go back to just one window (by deleting all but the selected window)."
   :bind (:map transient-map
               ("<escape>" . transient-quit-all)))
 
+(use-package expand-region
+  :bind (("M-h" . er/mark-outside-quotes)))
+
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
 	   (null (getenv "TITAN")))
