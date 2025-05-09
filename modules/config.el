@@ -102,6 +102,10 @@
             "<remap> <save-some-buffers>"        #'project-save-some-buffers
             "C-c s"                              #'save-some-buffers))
 
+(defun highlight-region (start end color)
+  (interactive (list (region-beginning) (region-end) (read-color)))
+  (put-text-property start end 'face (list :background color)))
+
 ;;; completion
 
 (setf (alist-get 'ivy completion-styles-alist)
