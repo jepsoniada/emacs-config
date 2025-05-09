@@ -43,13 +43,13 @@
  '(overriding-text-conversion-style nil t)
  '(package-selected-packages
    '(ada-mode ada-ts-mode auctex avy chemtable consult crux d-mode dash
-              elnode evil expand-region geiser-guile glsl-mode gnuplot
-              gnuplot-mode god-mode haskell-mode ivy j-mode magit
-              mini-modeline minimap nix-mode ob-J ob-ada-spark
-              package-lint paredit pdf-tools qrencode rust-mode
-              scala-mode sly smalltalk-mode steamacs system-packages
-              titan-mode tramp typescript-mode typetest valign vertico
-              which-key))
+              elixir-mode elnode erlang evil expand-region
+              geiser-guile glsl-mode gnuplot gnuplot-mode god-mode
+              haskell-mode ivy j-mode magit mini-modeline minimap
+              nix-mode ob-J ob-ada-spark package-lint paredit
+              pdf-tools qrencode raku-mode rust-mode scala-mode sly
+              smalltalk-mode steamacs system-packages titan-mode tramp
+              typescript-mode typetest valign vertico which-key))
  '(package-vc-selected-packages
    '((titan-mode :url "https://github.com/jepsoniada/titan-mode.git")
      (typetest :url "https://github.com/jepsoniada/typetest.git")
