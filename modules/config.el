@@ -106,6 +106,11 @@
   (interactive (list (region-beginning) (region-end) (read-color)))
   (put-text-property start end 'face (list :background color)))
 
+(defun multiline (&rest lines)
+  (mapconcat #'identity
+             lines
+             "\n"))
+
 ;;; completion
 
 (setf (alist-get 'ivy completion-styles-alist)
