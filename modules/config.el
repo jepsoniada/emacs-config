@@ -428,6 +428,13 @@ or go back to just one window (by deleting all but the selected window)."
 (use-package expand-region
   :bind (("M-h" . er/mark-outside-quotes)))
 
+(when (ignore-errors (require 'replace)) ;; occur realy
+  (defun jepson/occur-change-regexp (regexp &optional nlines)
+    (interactive (occur-read-primary-args))
+    (setf (car occur-revert-arguments) regexp)
+    (revert-buffer))
+  (keymap-set occur-mode-map "r" #'jepson/occur-change-regexp))
+
 ;;; god mode
 (when (and (ignore-errors (require 'god-mode))
 	   (null (getenv "TITAN")))
