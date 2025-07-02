@@ -49,9 +49,10 @@
               nix-mode ob-J ob-ada-spark package-lint paredit
               pdf-tools qrencode raku-mode rust-mode scala-mode sly
               smalltalk-mode steamacs system-packages titan-mode tramp
-              typescript-mode typetest valign vertico which-key))
+              treepy typescript-mode typetest valign vertico which-key))
  '(package-vc-selected-packages
-   '((titan-mode :url "https://github.com/jepsoniada/titan-mode.git")
+   '((treepy :url "https://github.com/jepsoniada/treepy.el.git")
+     (titan-mode :url "https://github.com/jepsoniada/titan-mode.git")
      (typetest :url "https://github.com/jepsoniada/typetest.git")
      (ob-J :url "https://github.com/jepsoniada/ob-J.git")
      (steamacs :vc-backend Git :url

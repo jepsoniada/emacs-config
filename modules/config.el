@@ -377,6 +377,9 @@ or go back to just one window (by deleting all but the selected window)."
 ;;             (or def "")
 ;;             str))))))
 
+(use-package treepy
+  :vc (:url "https://github.com/jepsoniada/treepy.el.git"))
+
 (when (and (ignore-errors (require 'calendar))
 	   (ignore-errors (require 'treepy)))
   (eval (treepy-prewalk-replace '((mode-line-format . header-line-format))
