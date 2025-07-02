@@ -34,6 +34,7 @@
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
+ '(org-agenda-files '("~/org/notes.org"))
  '(org-babel-J-command "~/.nix-profile/bin/jconsole")
  '(org-format-latex-options
    '(:foreground default :background default :scale 4.0 :html-foreground
