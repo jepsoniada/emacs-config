@@ -59,7 +59,8 @@
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
- '(touch-screen-display-keyboard t))
+ '(touch-screen-display-keyboard t)
+ '(warning-minimum-level :emergency))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
