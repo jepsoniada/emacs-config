@@ -189,6 +189,8 @@ or go back to just one window (by deleting all but the selected window)."
 (keymap-global-set "M-n" #'minibuffer-next-completion)
 (keymap-global-set "M-p" #'minibuffer-previous-completion)
 
+(keymap-global-set "C-x t" #'eshell)
+
 ;;; advices
 
 (defun jepson/no-undo (fn &rest rest)
