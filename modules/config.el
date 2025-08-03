@@ -413,7 +413,7 @@ or go back to just one window (by deleting all but the selected window)."
 	       (lambda nil (paredit-mode 1))))
 
 (when (ignore-errors (require 'find-dired))
-  (setf find-ls-option `("-exec ls -ldh {} +" . "-ldh")))
+  (setf find-ls-option `("-exec ls -ldh --quoting-style=literal {} +" . "-ldh --quoting-style=literal")))
 
 (when (ignore-errors (require 'line-mark)))
 
