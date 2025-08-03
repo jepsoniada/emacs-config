@@ -298,10 +298,14 @@ or go back to just one window (by deleting all but the selected window)."
 
 (ignore-errors (require 'typetest))
 
-(when (ignore-errors (require 'avy))
-
-  (keymap-global-set "C-; C-j" 'avy-goto-char)
-  (keymap-global-set "C-; C-l" 'avy-goto-line))
+(use-package avy
+  :bind (("C-; C-l" . avy-goto-line)
+         ("C-; C-j" . jepson/avy-search))
+  :config
+  (defun jepson/avy-search ()
+    (interactive)
+    (avy--generic-jump (read-regexp "jump to (regexp): ")
+                       nil)))
 
 (when (ignore-errors (require 'vertico))
   (vertico-mode))
