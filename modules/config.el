@@ -404,17 +404,17 @@ or go back to just one window (by deleting all but the selected window)."
 
 (when (ignore-errors (require 'simple-httpd)))
 
-(when (ignore-errors (require 'paredit))
-  (keymap-set paredit-mode-map "C-j" nil)
-  (keymap-set paredit-mode-map "C-M-b" nil)
-  (keymap-set paredit-mode-map "C-M-d" nil)
-  (keymap-set paredit-mode-map "C-M-f" nil)
-  (keymap-set paredit-mode-map "C-M-n" nil)
-  (keymap-set paredit-mode-map "C-M-p" nil)
-  (keymap-set paredit-mode-map "C-M-u" nil)
-
-  (add-to-list 'lisp-data-mode-hook
-	       (lambda nil (paredit-mode 1))))
+(use-package paredit
+  :bind ((nil . nil)
+         :map paredit-mode-map
+         (("C-j" . nil)
+          ("C-M-b" . nil)
+          ("C-M-d" . nil)
+          ("C-M-f" . nil)
+          ("C-M-n" . nil)
+          ("C-M-p" . nil)
+          ("C-M-u" . nil)))
+  :hook lisp-data-mode)
 
 (when (ignore-errors (require 'find-dired))
   (setf find-ls-option `("-exec ls -ldh --quoting-style=literal {} +" . "-ldh --quoting-style=literal")))
