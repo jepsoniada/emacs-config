@@ -448,50 +448,52 @@ or go back to just one window (by deleting all but the selected window)."
   (keymap-set occur-mode-map "r" #'jepson/occur-change-regexp))
 
 ;;; god mode
-(when (and (ignore-errors (require 'god-mode))
-	   (null (getenv "TITAN")))
-  (add-to-list 'window-selection-change-functions
-	       (lambda (window-or-frame)
-		 (when (not (minibufferp))
-		   (god-local-mode 1))))
+(use-package god-mode
+  :after (paredit)
+  :config
+  (when (null (getenv "TITAN"))
+    (add-to-list 'window-selection-change-functions
+	         (lambda (window-or-frame)
+		   (when (not (minibufferp))
+		     (god-local-mode 1))))
 
-  (setq god-exempt-major-modes nil
-	god-exempt-predicates nil)
-  (setq-default mode-line-format
-		'((:eval
-		   (if god-local-mode
-		     (propertize " god " 'face '((t (:background "#0F0"))))
-		     (propertize " not " 'face '((t (:background "#F00"))))))
-		  "%e"
-		  mode-line-front-space
-		  (:propertize
-		   ("" mode-line-mule-info mode-line-client mode-line-modified
-		    mode-line-remote mode-line-window-dedicated)
-		   display
-		   (min-width (6.0)))
-		  mode-line-frame-identification
-		  mode-line-buffer-identification
-		  "   "
-		  mode-line-position
-		  (project-mode-line project-mode-line-format)
-		  (vc-mode vc-mode)
-		  "  "
-		  mode-line-modes
-		  mode-line-misc-info
-		  mode-line-end-spaces))
+    (setq god-exempt-major-modes nil
+	  god-exempt-predicates nil)
+    (setq-default mode-line-format
+		  '((:eval
+		     (if god-local-mode
+		       (propertize " god " 'face '((t (:background "#0F0"))))
+		       (propertize " not " 'face '((t (:background "#F00"))))))
+		    "%e"
+		    mode-line-front-space
+		    (:propertize
+		     ("" mode-line-mule-info mode-line-client mode-line-modified
+		      mode-line-remote mode-line-window-dedicated)
+		     display
+		     (min-width (6.0)))
+		    mode-line-frame-identification
+		    mode-line-buffer-identification
+		    "   "
+		    mode-line-position
+		    (project-mode-line project-mode-line-format)
+		    (vc-mode vc-mode)
+		    "  "
+		    mode-line-modes
+		    mode-line-misc-info
+		    mode-line-end-spaces))
 
-  ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
-  (global-set-key (kbd "C-z") #'god-local-mode)
-  (global-set-key (kbd "π") #'god-local-mode)
+    ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
+    (global-set-key (kbd "C-z") #'god-local-mode)
+    (global-set-key (kbd "π") #'god-local-mode)
 
-  (define-key god-local-mode-map (kbd ".") #'repeat)
-  (define-key god-local-mode-map (kbd "z") #'god-local-mode)
+    (define-key god-local-mode-map (kbd ".") #'repeat)
+    (define-key god-local-mode-map (kbd "z") #'god-local-mode)
 
-  (when (ignore-errors (require 'god-mode-isearch))
-    (define-key isearch-mode-map (kbd "C-z") 'god-mode-isearch-activate)
-    (define-key isearch-mode-map (kbd "π") 'god-mode-isearch-activate)
-    (define-key god-mode-isearch-map (kbd "z") 'god-mode-isearch-disable)
-    (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable)))
+    (when (ignore-errors (require 'god-mode-isearch))
+      (define-key isearch-mode-map (kbd "C-z") 'god-mode-isearch-activate)
+      (define-key isearch-mode-map (kbd "π") 'god-mode-isearch-activate)
+      (define-key god-mode-isearch-map (kbd "z") 'god-mode-isearch-disable)
+      (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable))))
 
 (when (ignore-errors (and (require 'titan-mode)
 			  (not (null (getenv "TITAN")))))
