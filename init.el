@@ -44,13 +44,15 @@
  '(overriding-text-conversion-style nil t)
  '(package-selected-packages
    '(ada-mode ada-ts-mode auctex avy chemtable consult crux d-mode dash
-              elixir-mode elnode erlang evil expand-region
-              geiser-guile glsl-mode gnuplot gnuplot-mode god-mode
-              haskell-mode ivy j-mode magit mini-modeline minimap
+              elixir-mode elnode erlang eshell-syntax-highlighting
+              evil expand-region geiser-guile glsl-mode gnuplot
+              gnuplot-mode god-mode haskell-mode ivy j-mode javap-mode
+              kotlin-mode magit mini-modeline minimap multiple-cursors
               nix-mode ob-J ob-ada-spark package-lint paredit
-              pdf-tools qrencode raku-mode rust-mode scala-mode sly
-              smalltalk-mode steamacs system-packages titan-mode tramp
-              treepy typescript-mode typetest valign vertico which-key))
+              pdf-tools qrencode raku-mode rust-mode scala-mode
+              selected sly smalltalk-mode steamacs system-packages
+              titan-mode tramp treepy typescript-mode typetest valign
+              vertico which-key yaml))
  '(package-vc-selected-packages
    '((treepy :url "https://github.com/jepsoniada/treepy.el.git")
      (titan-mode :url "https://github.com/jepsoniada/titan-mode.git")
