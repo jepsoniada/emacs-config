@@ -426,8 +426,8 @@ or go back to just one window (by deleting all but the selected window)."
   :defer t)
 
 (use-package transient
-  :bind (:map transient-map
-              ("<escape>" . transient-quit-all)))
+  :bind ( :map transient-map
+          ("<escape>" . transient-quit-all)))
 
 (use-package expand-region
   :bind (("M-h" . er/mark-outside-quotes)))
