@@ -430,7 +430,15 @@ or go back to just one window (by deleting all but the selected window)."
           ("<escape>" . transient-quit-all)))
 
 (use-package expand-region
-  :bind (("M-h" . er/mark-outside-quotes)))
+  :bind (("M-h"          . nil)
+         ("M-h C-d"      . er/mark-defun)
+         ("M-h C-i C-\"" . er/mark-inside-quotes)
+         ("M-h C-i C-'"  . er/mark-inside-quotes)
+         ("M-h C-i C-p"  . er/mark-inside-pairs)
+         ("M-h C-a C-\"" . er/mark-outside-quotes)
+         ("M-h C-a C-'"  . er/mark-outside-quotes)
+         ("M-h C-a C-p"  . er/mark-outside-pairs)
+         ("M-h C-c"      . er/mark-comment)))
 
 (when (ignore-errors (require 'replace)) ;; occur realy
   (defun jepson/occur-change-regexp (regexp &optional nlines)
