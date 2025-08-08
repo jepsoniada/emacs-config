@@ -405,15 +405,15 @@ or go back to just one window (by deleting all but the selected window)."
 (when (ignore-errors (require 'simple-httpd)))
 
 (use-package paredit
-  :bind ((nil . nil)
-         :map paredit-mode-map
-         (("C-j" . nil)
+  :bind ( :map paredit-mode-map
+          ("C-j" . nil)
           ("C-M-b" . nil)
           ("C-M-d" . nil)
           ("C-M-f" . nil)
           ("C-M-n" . nil)
           ("C-M-p" . nil)
-          ("C-M-u" . nil)))
+          ("C-M-u" . nil)
+          ("M-s" . nil))
   :hook lisp-data-mode)
 
 (when (ignore-errors (require 'find-dired))
