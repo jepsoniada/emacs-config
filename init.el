@@ -307,8 +307,8 @@ or go back to just one window (by deleting all but the selected window)."
   :config
   (defun jepson/avy-search ()
     (interactive)
-    (avy--generic-jump (read-regexp "jump to (regexp): ")
-                       nil)))
+    (let ((avy-timeout-seconds nil))
+      (goto-char (car (avy-process (avy--read-candidates)))))))
 
 (when (ignore-errors (require 'vertico))
   (vertico-mode))
