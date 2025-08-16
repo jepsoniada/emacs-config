@@ -450,6 +450,10 @@ or go back to just one window (by deleting all but the selected window)."
     (revert-buffer))
   (keymap-set occur-mode-map "r" #'jepson/occur-change-regexp))
 
+(use-package aggressive-indent
+  :hook
+  (prog-mode . aggressive-indent-mode))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
