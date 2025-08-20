@@ -197,6 +197,11 @@ or go back to just one window (by deleting all but the selected window)."
 (keymap-global-set "C-M-@" #'rectangle-mark-mode)
 (keymap-global-unset "M-@")
 
+(keymap-global-set "C-x f"
+                   (lambda ()
+                     (interactive)
+                     (find-file user-init-file)))
+
 ;;; advices
 
 (defun jepson/no-undo (fn &rest rest)
