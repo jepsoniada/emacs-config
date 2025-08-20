@@ -441,7 +441,8 @@ or go back to just one window (by deleting all but the selected window)."
          ("M-h C-a C-\"" . er/mark-outside-quotes)
          ("M-h C-a C-'"  . er/mark-outside-quotes)
          ("M-h C-a C-p"  . er/mark-outside-pairs)
-         ("M-h C-c"      . er/mark-comment)))
+         ("M-h C-c"      . er/mark-comment)
+         ("M-h C-s"      . er/mark-symbol)))
 
 (when (ignore-errors (require 'replace)) ;; occur realy
   (defun jepson/occur-change-regexp (regexp &optional nlines)
