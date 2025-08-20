@@ -194,6 +194,9 @@ or go back to just one window (by deleting all but the selected window)."
 
 (keymap-global-set "C-x t" #'eshell)
 
+(keymap-global-set "C-M-@" #'rectangle-mark-mode)
+(keymap-global-unset "M-@")
+
 ;;; advices
 
 (defun jepson/no-undo (fn &rest rest)
@@ -454,6 +457,10 @@ or go back to just one window (by deleting all but the selected window)."
 (use-package aggressive-indent
   :hook
   (prog-mode . aggressive-indent-mode))
+
+(use-package line-mark
+  :vc (:url "https://github.com/jepsoniada/line-mark.git")
+  :bind (("M-@" . line-mark-mode)))
 
 ;;; god mode
 (use-package god-mode
