@@ -25,6 +25,7 @@
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
  '(dynamic-completion-mode t)
  '(electric-pair-mode t)
+ '(enable-recursive-minibuffers t)
  '(frame-resize-pixelwise t)
  '(geiser-guile-binary "guile2.2")
  '(indent-tabs-mode nil)
@@ -33,6 +34,7 @@
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
+ '(minibuffer-depth-indicate-mode t)
  '(org-agenda-files '("~/org/notes.org"))
  '(org-babel-J-command "~/.nix-profile/bin/jconsole")
  '(org-format-latex-options
