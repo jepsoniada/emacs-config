@@ -420,6 +420,8 @@ or go back to just one window (by deleting all but the selected window)."
 (when (ignore-errors (require 'simple-httpd)))
 
 (use-package paredit
+  :ensure t
+  :pin melpa
   :bind ( :map paredit-mode-map
           ("C-j" . nil)
           ("C-M-b" . nil)
@@ -464,6 +466,8 @@ or go back to just one window (by deleting all but the selected window)."
   (keymap-set occur-mode-map "r" #'jepson/occur-change-regexp))
 
 (use-package aggressive-indent
+  :ensure t
+  :pin melpa
   :hook
   (prog-mode . aggressive-indent-mode))
 
@@ -474,6 +478,8 @@ or go back to just one window (by deleting all but the selected window)."
 ;;; god mode
 (use-package god-mode
   :after (paredit)
+  :ensure t
+  :pin melpa
   :config
   (when (null (getenv "TITAN"))
     (add-to-list 'window-selection-change-functions
