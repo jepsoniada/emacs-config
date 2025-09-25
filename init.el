@@ -1,6 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
-(setf custom-file "~/.config/emacs/custom.el")
+(setf custom-file (file-name-concat user-emacs-directory "custom.el"))
 (load custom-file)
 
 ;;; melpa (bleading-edge)
@@ -202,6 +202,8 @@ or go back to just one window (by deleting all but the selected window)."
                      (interactive)
                      (find-file user-init-file)))
 
+(keymap-global-set "C-x C-b" #'ibuffer)
+
 ;;; advices
 
 (defun jepson/no-undo (fn &rest rest)
@@ -254,6 +256,8 @@ or go back to just one window (by deleting all but the selected window)."
 
   (define-key org-mode-map (kbd "C-<") #'org-metaleft)
   (define-key org-mode-map (kbd "C->") #'org-metaright)
+
+  (keymap-unset org-mode-map "M-h")
 
   (when (ignore-errors (require 'valign))
     (add-hook 'org-mode-hook #'valign-mode)))

@@ -49,12 +49,12 @@
               eshell-syntax-highlighting evil expand-region
               geiser-guile glsl-mode gnuplot gnuplot-mode go-mode
               god-mode haskell-mode ivy j-mode javap-mode kotlin-mode
-              line-mark magit mini-modeline minimap multiple-cursors
-              nix-mode ob-J ob-ada-spark package-lint paredit
-              pdf-tools qrencode raku-mode rust-mode scala-mode
-              selected sly smalltalk-mode steamacs system-packages
-              titan-mode tramp treepy typescript-mode typetest valign
-              vertico which-key yaml))
+              line-mark magit markdown-mode mini-modeline minimap
+              multiple-cursors nix-mode ob-J ob-ada-spark package-lint
+              paredit pdf-tools py-preformat qrencode raku-mode
+              rust-mode scala-mode selected sly smalltalk-mode
+              steamacs system-packages titan-mode tramp treepy
+              typescript-mode typetest valign vertico which-key yaml))
  '(package-vc-selected-packages
    '((line-mark :url "https://github.com/jepsoniada/line-mark.git")
      (treepy :url "https://github.com/jepsoniada/treepy.el.git")
