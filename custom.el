@@ -45,7 +45,7 @@
  '(overriding-text-conversion-style nil t)
  '(package-selected-packages
    '(ada-mode ada-ts-mode aggressive-indent auctex avy chemtable consult
-              crux d-mode dash elixir-mode elnode erlang
+              crux d-mode dash elixir-mode ellama elnode erlang
               eshell-syntax-highlighting evil expand-region
               geiser-guile glsl-mode gnuplot gnuplot-mode go-mode
               god-mode haskell-mode ivy j-mode javap-mode kotlin-mode
