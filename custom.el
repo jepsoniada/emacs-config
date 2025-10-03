@@ -65,6 +65,7 @@
                "https://github.com/jepsoniada/steamacs.git")))
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode nil)
+ '(search-exit-option 'edit)
  '(tool-bar-mode nil)
  '(touch-screen-display-keyboard t)
  '(warning-minimum-level :emergency))
