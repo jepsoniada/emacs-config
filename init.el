@@ -471,6 +471,11 @@ or go back to just one window (by deleting all but the selected window)."
   :vc (:url "https://github.com/jepsoniada/line-mark.git")
   :bind (("M-@" . line-mark-mode)))
 
+(use-package isearch
+  :bind ( :map isearch-mode-map
+          ("<escape>" . isearch-cancel)
+          ("C-g" . isearch-cancel)))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
