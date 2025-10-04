@@ -202,7 +202,29 @@ or go back to just one window (by deleting all but the selected window)."
                      (interactive)
                      (find-file user-init-file)))
 
-(keymap-global-set "C-x C-b" #'ibuffer)
+(use-package ibuffer
+  :bind ( ("C-x C-b" . ibuffer))
+  :config
+  (defun ibuffer-list-buffer-minor-modes ()
+    "list of minor modes for completion"
+    (let ((flat-repeating (cl-loop for buf in (buffer-list)
+                                   append (buffer-local-value 'local-minor-modes buf))))
+      (seq-map #'symbol-name (seq-uniq flat-repeating))))
+  (define-ibuffer-filter used-minor-mode
+      "ibuffer filter for minor modes"
+    ( :description "local minor mode in use"
+      :accept-list t
+      :reader (let ((buf (ibuffer-current-buffer)))
+                (mapcar #'intern
+                        (completing-read-multiple
+                         (format-prompt "Filter by minor mode" nil)
+                         (ibuffer-list-buffer-minor-modes)
+                         nil
+                         t
+                         nil
+                         nil
+                         nil))))
+    (member qualifier (buffer-local-value 'local-minor-modes buf))))
 
 ;;; advices
 
