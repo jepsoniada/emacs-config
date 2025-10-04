@@ -583,4 +583,7 @@ or go back to just one window (by deleting all but the selected window)."
 		  mode-line-misc-info
 		  mode-line-end-spaces)))
 
+(defun eshell/comint-run (program &rest args)
+  (comint-run program args))
+
 (provide 'config)
