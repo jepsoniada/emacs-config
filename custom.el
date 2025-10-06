@@ -55,7 +55,7 @@
               rust-mode scala-mode selected sly smalltalk-mode
               steamacs system-packages titan-mode tramp treepy
               typescript-mode typetest valign vertico which-key yaml
-              yaml-mode))
+              yaml-mode marginalia))
  '(package-vc-selected-packages
    '((line-mark :url "https://github.com/jepsoniada/line-mark.git")
      (treepy :url "https://github.com/jepsoniada/treepy.el.git")
