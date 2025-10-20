@@ -485,7 +485,31 @@ or go back to just one window (by deleting all but the selected window)."
     (interactive (occur-read-primary-args))
     (setf (car occur-revert-arguments) regexp)
     (revert-buffer))
-  (keymap-set occur-mode-map "r" #'jepson/occur-change-regexp))
+  (defun jepson/occur-kill-occurrence ()
+    (interactive)
+    (with-current-buffer (current-buffer)
+      (let ((edge-p nil))
+        (if edge-p
+          (end-of-line)
+          (condition-case nil
+              (progn
+                (next-line)
+                (beginning-of-line))
+            (end-of-buffer (progn
+                             (end-of-line)
+                             (setf edge-p t)))))
+        (push-mark (point) t t)
+        (if edge-p
+          (beginning-of-line)
+          (condition-case nil
+              (previous-line)
+            (beginning-of-buffer (progn
+                                   (beginning-of-line)
+                                   (setf edge-p t))))))
+      (facemenu-remove-special (point) (mark))
+      (delete-region (point) (mark))))
+  (keymap-set occur-mode-map "r" #'jepson/occur-change-regexp)
+  (keymap-set occur-mode-map "k" #'jepson/occur-kill-occurrence))
 
 (use-package aggressive-indent
   :ensure t
