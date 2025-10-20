@@ -526,6 +526,10 @@ or go back to just one window (by deleting all but the selected window)."
                 :around
                 backward)))
 
+(use-package marginalia
+  :config
+  (marginalia-mode 1))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
