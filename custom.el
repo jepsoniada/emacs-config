@@ -64,6 +64,7 @@
      (ob-J :url "https://github.com/jepsoniada/ob-J.git")
      (steamacs :vc-backend Git :url
                "https://github.com/jepsoniada/steamacs.git")))
+ '(page-delimiter "\14")
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode nil)
  '(search-exit-option 'edit)
