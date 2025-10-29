@@ -36,9 +36,10 @@
   (let ((number-or-list (save-excursion
                           (pcase (python-indent-context)
                             (`(:no-indent . ,_) (prog-first-column)) ; usually 0
+                            (`(:inside-string . ,_)
+                             (current-indentation))
                             (`(,(or :after-line
                                     :after-comment
-                                    :inside-string
                                     :after-backslash
                                     :inside-paren-continuation-line) . ,start)
                              ;; Copy previous indentation.
@@ -57,12 +58,11 @@
                                                                                                  (buffer-substring-no-properties start end))))
                                                             (substring (buffer-substring-no-properties start end) start-match (match-end 0))))
                                                  0))
-                               (pcase (- indent (* newline-count python-indent-offset))
+                               (pcase (- indent (if (>= 0 newline-count)
+                                                  0
+                                                  (* (1- newline-count) python-indent-offset)))
                                  ((and (pred natnump) a) a)
-                                 (_ 0)))
-                             ;; (goto-char start)
-                             ;; (current-indentation)
-                             )
+                                 (_ 0))))
                             (`(,(or :inside-paren-at-closing-paren
                                     :inside-paren-at-closing-nested-paren) . ,start)
                              (goto-char (+ 1 start))
