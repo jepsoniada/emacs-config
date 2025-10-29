@@ -348,6 +348,11 @@ or go back to just one window (by deleting all but the selected window)."
   :config
   (vertico-mode 1))
 
+(use-package consult
+  :after (vertico)
+  :config
+  (setf completion-in-region-function #'consult-completion-in-region))
+
 (use-package treepy
   :vc (:url "https://github.com/jepsoniada/treepy.el.git"))
 
