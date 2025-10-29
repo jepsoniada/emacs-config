@@ -344,8 +344,9 @@ or go back to just one window (by deleting all but the selected window)."
     (let ((avy-timeout-seconds nil))
       (goto-char (car (avy-process (avy--read-candidates)))))))
 
-(when (ignore-errors (require 'vertico))
-  (vertico-mode))
+(use-package vertico
+  :config
+  (vertico-mode 1))
 
 (use-package treepy
   :vc (:url "https://github.com/jepsoniada/treepy.el.git"))
