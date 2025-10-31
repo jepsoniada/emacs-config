@@ -507,6 +507,10 @@ or go back to just one window (by deleting all but the selected window)."
   :pin melpa
   :config
   (when (null (getenv "TITAN"))
+    (add-to-list 'window-buffer-change-functions
+                 (lambda (window-or-frame)
+                   (when (not (minibufferp))
+	             (god-local-mode 1))))
     (add-to-list 'window-selection-change-functions
 	         (lambda (window-or-frame)
 		   (when (not (minibufferp))
