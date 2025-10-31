@@ -486,6 +486,16 @@ or go back to just one window (by deleting all but the selected window)."
                 :around
                 backward)))
 
+(use-package winner
+  :demand t
+  :bind (("C-x w /" . winner-undo)
+         ("C-x w ?" . winner-redo))
+  :bind (:repeat-map winner-mode-repeat-map
+                     ("/" . winner-undo)
+                     ("?" . winner-redo))
+  :config
+  (winner-mode 1))
+
 (use-package marginalia
   :config
   (marginalia-mode 1))
