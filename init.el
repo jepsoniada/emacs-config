@@ -512,6 +512,11 @@ or go back to just one window (by deleting all but the selected window)."
     (interactive)
     (fsharp-eval-region (point-min) (point-max))))
 
+(use-package multiple-cursors
+  :bind (("C-x r t" . mc/edit-lines)
+         ("C-x r S" . mc/mark-all-in-region)
+         ("C-x r R" . mc/mark-all-in-region-regexp)))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
