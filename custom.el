@@ -24,10 +24,15 @@
  '(dired-isearch-filenames t)
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
  '(dynamic-completion-mode t)
+ '(eldoc-echo-area-use-multiline-p nil)
  '(electric-pair-mode t)
  '(enable-recursive-minibuffers t)
+ '(eshell-bad-command-tolerance 999999999999999999999)
  '(frame-resize-pixelwise t)
  '(geiser-guile-binary "guile2.2")
+ '(image-dired-cmd-create-thumbnail-options
+   '("convert" "-size" "%wx%h" "%f[0]" "-resize" "%wx%h>" "-gravity"
+     "center" "-extent" "%wx%h" "jpeg:%t"))
  '(indent-tabs-mode nil)
  '(isearch-wrap-pause 'no)
  '(magit-clone-always-transient t)
@@ -35,8 +40,16 @@
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
  '(minibuffer-depth-indicate-mode t)
- '(org-agenda-files '("~/org/notes.org"))
+ '(org-agenda-files
+   '("~/wiki/riskofrain2/passiveItems.org"
+     "/home/jepson/wiki/tabg/misc.org"))
+ '(org-auto-align-tags nil)
  '(org-babel-J-command "~/.nix-profile/bin/jconsole")
+ '(org-capture-templates
+   '(("i" "Idea" entry (file+headline org-default-notes-file "Tasks")
+      "* TODO %?\12%u\12")
+     ("t" "Task" entry (file+headline "" "Tasks")
+      "* TODO %?\n  %u\n  %a")))
  '(org-format-latex-options
    '(:foreground default :background default :scale 4.0 :html-foreground
                  "Black" :html-background "Transparent" :html-scale
@@ -47,15 +60,16 @@
    '(ada-mode ada-ts-mode aggressive-indent auctex avy chemtable consult
               crux d-mode dash dockerfile-mode elixir-mode ellama
               elnode erlang eshell-syntax-highlighting evil
-              expand-region geiser-guile glsl-mode gnuplot
-              gnuplot-mode go-mode god-mode haskell-mode ivy j-mode
-              javap-mode kotlin-mode line-mark magit marginalia
-              markdown-mode mini-modeline minimap multiple-cursors
-              nix-mode ob-J ob-ada-spark package-lint paredit
-              pdf-tools py-preformat qrencode raku-mode rust-mode
-              scala-mode selected sly smalltalk-mode steamacs
-              system-packages titan-mode tramp treepy typescript-mode
-              typetest valign vertico which-key yaml yaml-mode))
+              expand-region fsharp-mode geiser-guile glsl-mode gnuplot
+              gnuplot-mode go-mode god-mode haskell-mode inwokacja ivy
+              j-mode javap-mode json-ops kotlin-mode line-mark magit
+              marginalia markdown-mode mini-modeline minimap
+              multiple-cursors nix-mode ob-J ob-ada-spark ob-prolog
+              ob-raku package-lint paredit pdf-tools py-preformat
+              qrencode raku-mode rust-mode scala-mode selected sly
+              smalltalk-mode steamacs system-packages titan-mode tramp
+              treepy typescript-mode typetest valign vertico which-key
+              yaml yaml-mode))
  '(package-vc-selected-packages
    '((line-mark :url "https://github.com/jepsoniada/line-mark.git")
      (treepy :url "https://github.com/jepsoniada/treepy.el.git")
@@ -65,6 +79,11 @@
      (steamacs :vc-backend Git :url
                "https://github.com/jepsoniada/steamacs.git")))
  '(page-delimiter "\14")
+ '(prolog-program-name
+   '(((getenv "EPROLOG") (eval (getenv "EPROLOG"))) (eclipse "eclipse")
+     (mercury nil) (sicstus "sicstus") (swi "swipl") (gnu "gprolog")
+     (t "gprolog")))
+ '(prolog-system 'swi)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode nil)
  '(search-exit-option 'edit)
