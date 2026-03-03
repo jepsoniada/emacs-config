@@ -98,8 +98,17 @@
                              (current-column))
                             (`(:after-block-end . ,start)
                              ;; Subtract one indentation level.
-                             (goto-char start)
-                             (max 0 (- (current-indentation) python-indent-offset)))
+                             (let* ((end (point))
+                                    (start (goto-char start))
+                                    (newline-count (seq-reduce #'+
+                                                               (seq-map (|> (= (string-to-char "\n") %)
+                                                                            (if % 1 0))
+                                                                        (when-let* ((start-match (string-match (rx "\n" (0+ (any blank space "\n" )))
+                                                                                                               (buffer-substring-no-properties start end))))
+                                                                          (substring (buffer-substring-no-properties start end) start-match (match-end 0))))
+                                                               0)))
+                               
+                               (max 0 (- (current-indentation) (* (1- newline-count) python-indent-offset)))))
                             (`(:at-dedenter-block-start . ,_)
                              ;; List all possible indentation levels from opening blocks.
                              (let ((opening-block-start-points
