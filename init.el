@@ -500,6 +500,14 @@ or go back to just one window (by deleting all but the selected window)."
   :config
   (marginalia-mode 1))
 
+(use-package fsharp-mode
+  :bind ( :map fsharp-mode-map
+          ("C-c C-b" . fsharp-eval-buffer))
+  :config
+  (defun fsharp-eval-buffer ()
+    (interactive)
+    (fsharp-eval-region (point-min) (point-max))))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
