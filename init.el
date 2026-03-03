@@ -204,6 +204,7 @@ or go back to just one window (by deleting all but the selected window)."
 
 (use-package ibuffer
   :bind ( ("C-x C-b" . ibuffer))
+  :hook (ibuffer . hl-line-mode)
   :config
   (defun ibuffer-list-buffer-minor-modes ()
     "list of minor modes for completion"
