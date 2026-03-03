@@ -280,6 +280,9 @@ or go back to just one window (by deleting all but the selected window)."
   (define-key org-mode-map (kbd "C->") #'org-metaright)
 
   (keymap-unset org-mode-map "M-h")
+  
+  (keymap-global-set "C-#" #'org-capture)
+  (keymap-unset org-mode-map "C-#")
 
   (when (ignore-errors (require 'valign))
     (add-hook 'org-mode-hook #'valign-mode)))
