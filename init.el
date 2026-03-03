@@ -202,6 +202,8 @@ or go back to just one window (by deleting all but the selected window)."
                      (interactive)
                      (find-file user-init-file)))
 
+(keymap-global-set "C-M-y" #'duplicate-dwim)
+
 (use-package ibuffer
   :bind ( ("C-x C-b" . ibuffer))
   :hook (ibuffer . hl-line-mode)
