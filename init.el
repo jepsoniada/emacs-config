@@ -516,6 +516,14 @@ or go back to just one window (by deleting all but the selected window)."
 		   (when (not (minibufferp))
 		     (god-local-mode 1))))
 
+    (defun jepson/god-mode/bubble-up-keymap (_file)
+      (let ((kv (assq 'god-local-mode
+                      minor-mode-map-alist)))
+        (assq-delete-all 'god-local-mode minor-mode-map-alist)
+        (add-to-list 'minor-mode-map-alist kv)))
+
+    (add-to-list 'after-load-functions 'jepson/god-mode/bubble-up-keymap)
+
     (setq god-exempt-major-modes nil
 	  god-exempt-predicates nil)
     (setq-default mode-line-format
