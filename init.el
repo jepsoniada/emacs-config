@@ -182,6 +182,32 @@ or go back to just one window (by deleting all but the selected window)."
         (goto-char right-outer))
       (forward-sexp arg interactive))))
 
+(defun jepson/open-line (n)
+  (interactive "*P")
+  (cl-flet ((jepson//open-line (n)
+              (if (natnump n)
+                (move-end-of-line 1)
+                (move-beginning-of-line 1))
+              (let ((n (* (/ (abs n) n)
+                          (1- (abs n)))))
+                (dotimes (_ (1+ (* 2 (abs n))))
+                  (newline))
+                (dotimes (_ (abs n))
+                  (previous-line)))
+              (when (not (natnump n))
+                (previous-line))))
+    (pcase n
+      ('nil
+       (jepson//open-line 1))
+      ('-
+       (jepson//open-line -1))
+      ((and `(,n) (guard (natnump n)))
+       (jepson//open-line (+ n (/ n (abs n)))))
+      ((and n (guard (natnump n)))
+       (jepson//open-line (+ n (/ n (abs n)))))
+      (a
+       (message "unimplemented: %s" a)))))
+
 (keymap-global-set "C-M-n" #'down-list)
 (keymap-global-set "C-M-p" #'jepson/up-list)
 (keymap-global-set "C-M-f" #'jepson/forward-sexp)
@@ -203,6 +229,8 @@ or go back to just one window (by deleting all but the selected window)."
                      (find-file user-init-file)))
 
 (keymap-global-set "C-M-y" #'duplicate-dwim)
+
+(keymap-global-set "C-S-m" #'jepson/open-line)
 
 (use-package ibuffer
   :bind ( ("C-x C-b" . ibuffer))
