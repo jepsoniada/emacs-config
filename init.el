@@ -314,6 +314,8 @@ or go back to just one window (by deleting all but the selected window)."
   
   (keymap-global-set "C-#" #'org-capture)
   (keymap-unset org-mode-map "C-#")
+  (keymap-global-set "M-#" (lambda () (interactive)
+                             (find-file org-default-notes-file)))
 
   (when (ignore-errors (require 'valign))
     (add-hook 'org-mode-hook #'valign-mode)))
