@@ -549,6 +549,16 @@ or go back to just one window (by deleting all but the selected window)."
          ("C-x r S" . mc/mark-all-in-region)
          ("C-x r R" . mc/mark-all-in-region-regexp)))
 
+(use-package magit
+  :config
+  (defun jepson/magit-commit-create (&optional args)
+    (interactive (list (magit-commit-arguments)))
+    (magit-run-git-async (append '("commit")
+                                 args
+                                 (list "-m" (read-string "Commit message: ")))))
+  (transient-append-suffix 'magit-commit "c"
+    '("m" "one line commit" #'jepson/magit-commit-create)))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
