@@ -373,12 +373,82 @@ or go back to just one window (by deleting all but the selected window)."
 
 (use-package avy
   :bind (("C-; C-l" . avy-goto-line)
-         ("C-; C-j" . jepson/avy-search))
+         ("C-; C-s" . jepson/avy-search)
+         ("C-; C-j" . jepson/avy-search-in-line))
   :config
   (defun jepson/avy-search ()
     (interactive)
     (let ((avy-timeout-seconds nil))
-      (goto-char (car (avy-process (avy--read-candidates)))))))
+      (goto-char (car (avy-process (avy--read-candidates))))))
+
+  (defun jepson/avy-search-in-line ()
+    (interactive)
+    (goto-char (car (avy-process (jepson/avy--read-candidates-in-region)))))
+
+  (defun jepson/avy--read-candidates-in-region ()
+    (setq avy-text "")
+    (let (char break overlays regex)
+      (unwind-protect
+          (progn
+            (avy--make-backgrounds
+             (list (selected-window)))
+            (while (and (not break)
+                        (setq char
+                              (read-char (format "%d  char%s: "
+                                                 (length overlays)
+                                                 (if (string= avy-text "")
+                                                   avy-text
+                                                   (format " (%s)" avy-text)))
+                                         t)))
+              (dolist (ov overlays)
+                (delete-overlay ov))
+              (setq overlays nil)
+              (cond
+               ((= char 13)
+                (if avy-enter-times-out
+                  (setq break t)
+                  (setq avy-text (concat avy-text (list ?\n)))))
+               ((memq char avy-del-last-char-by)
+                (let ((l (length avy-text)))
+                  (when (>= l 1)
+                    (setq avy-text (substring avy-text 0 (1- l))))))
+               ((= char 27)
+                (keyboard-quit))
+               (t
+                (setq avy-text (concat avy-text (list char)))))
+              (when (>= (length avy-text) 1)
+                (let ((case-fold-search
+                       (or avy-case-fold-search (string= avy-text (downcase avy-text))))
+                      found)
+                  (let ((pair (cons (save-excursion
+                                      (beginning-of-line)
+                                      (point))
+                                    (save-excursion
+                                      (end-of-line)
+                                      (point)))))
+                    (save-excursion
+                      (goto-char (car pair))
+                      (setq regex (funcall #'regexp-quote avy-text))
+                      (while (re-search-forward regex (cdr pair) t)
+                        (unless (not (avy--visible-p (1- (point))))
+                          (let* ((idx (if (= (length (match-data)) 4) 1 0))
+                                 (ov (make-overlay
+                                      (match-beginning idx) (match-end idx))))
+                            (setq found t)
+                            (push ov overlays)
+                            (overlay-put
+                             ov 'window (selected-window))
+                            (overlay-put
+                             ov 'face 'avy-goto-char-timer-face))))))
+                  (unless found (beep)))))
+            (nreverse (mapcar (lambda (ov)
+                                (cons (cons (overlay-start ov)
+                                            (overlay-end ov))
+                                      (overlay-get ov 'window)))
+                              overlays)))
+        (dolist (ov overlays)
+          (delete-overlay ov))
+        (avy--done)))))
 
 (use-package vertico
   :config
