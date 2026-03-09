@@ -448,7 +448,9 @@ or go back to just one window (by deleting all but the selected window)."
                               overlays)))
         (dolist (ov overlays)
           (delete-overlay ov))
-        (avy--done)))))
+        (avy--done))))
+
+  (keymap-set isearch-mode-map "C-;" #'avy-isearch))
 
 (use-package vertico
   :config
