@@ -49,7 +49,7 @@
    '(("i" "Idea" entry (file+headline org-default-notes-file "Tasks")
       "* TODO %?\12%u\12")
      ("t" "Task" entry (file+headline "" "Tasks")
-      "* TODO %?\n  %u\n  %a")))
+      "* TODO %?\12  %u\12  %a")))
  '(org-format-latex-options
    '(:foreground default :background default :scale 4.0 :html-foreground
                  "Black" :html-background "Transparent" :html-scale
@@ -79,6 +79,7 @@
      (steamacs :vc-backend Git :url
                "https://github.com/jepsoniada/steamacs.git")))
  '(page-delimiter "\14")
+ '(project-buffers-viewer 'project-list-buffers-ibuffer)
  '(prolog-program-name
    '(((getenv "EPROLOG") (eval (getenv "EPROLOG"))) (eclipse "eclipse")
      (mercury nil) (sicstus "sicstus") (swi "swipl") (gnu "gprolog")
