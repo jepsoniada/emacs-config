@@ -629,7 +629,7 @@ or go back to just one window (by deleting all but the selected window)."
                                  args
                                  (list "-m" (read-string "Commit message: ")))))
   (transient-append-suffix 'magit-commit "c"
-    '("m" "one line commit" #'jepson/magit-commit-create)))
+    (list "m" "one line commit" #'jepson/magit-commit-create)))
 
 ;;; god mode
 (use-package god-mode
