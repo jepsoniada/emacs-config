@@ -631,6 +631,10 @@ or go back to just one window (by deleting all but the selected window)."
   (transient-append-suffix 'magit-commit "c"
     (list "m" "one line commit" #'jepson/magit-commit-create)))
 
+(use-package xdg-launcher
+  :vc ( :url "https://github.com/emacs-exwm/xdg-launcher.git"
+        :rev "59b64f8"))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
