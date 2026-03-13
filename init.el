@@ -504,10 +504,6 @@ or go back to just one window (by deleting all but the selected window)."
 
 (when (ignore-errors (require 'line-mark)))
 
-(use-package nano-theme
-  :ensure nil
-  :defer t)
-
 (use-package transient
   :bind ( :map transient-map
           ("<escape>" . transient-quit-all)))
