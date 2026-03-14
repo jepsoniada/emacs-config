@@ -232,6 +232,9 @@ or go back to just one window (by deleting all but the selected window)."
 
 (keymap-global-set "C-S-m" #'jepson/open-line)
 
+(keymap-global-set "C-M-z" #'zap-to-char)
+(keymap-global-set "M-z" #'zap-up-to-char)
+
 (use-package ibuffer
   :bind ( ("C-x C-b" . ibuffer))
   :hook (ibuffer . hl-line-mode)
