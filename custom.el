@@ -63,14 +63,14 @@
               expand-region filechooser fsharp-mode geiser-guile
               glsl-mode gnuplot gnuplot-mode go-mode god-mode
               haskell-mode inwokacja ivy j-mode javap-mode json-ops
-              kotlin-mode line-mark magit marginalia markdown-mode
-              mini-modeline minimap multiple-cursors nix-mode ob-J
-              ob-ada-spark ob-prolog ob-raku package-lint paredit
-              pdf-tools py-preformat qrencode raku-mode rust-mode
-              scala-mode selected sly smalltalk-mode steamacs
-              system-packages titan-mode tramp treepy typescript-mode
-              typetest valign vertico which-key xdg-launcher yaml
-              yaml-mode))
+              kotlin-mode line-mark lsp-mode magit marginalia
+              markdown-mode mini-modeline minimap multiple-cursors
+              nix-mode ob-J ob-ada-spark ob-prolog ob-raku
+              package-lint paredit pdf-tools py-preformat qrencode
+              raku-mode rust-mode scala-mode selected sly
+              smalltalk-mode steamacs system-packages titan-mode tramp
+              treepy typescript-mode typetest valign vertico which-key
+              xdg-launcher yaml yaml-mode))
  '(package-vc-selected-packages
    '((xdg-launcher :url "https://github.com/emacs-exwm/xdg-launcher.git")
      (line-mark :url "https://github.com/jepsoniada/line-mark.git")
