@@ -218,8 +218,6 @@ or go back to just one window (by deleting all but the selected window)."
 (keymap-global-set "M-n" #'minibuffer-next-completion)
 (keymap-global-set "M-p" #'minibuffer-previous-completion)
 
-(keymap-global-set "C-x t" #'eshell)
-
 (keymap-global-set "C-M-@" #'rectangle-mark-mode)
 (keymap-global-unset "M-@")
 
@@ -634,6 +632,19 @@ or go back to just one window (by deleting all but the selected window)."
   :vc ( :url "https://github.com/emacs-exwm/xdg-launcher.git"
         :rev "59b64f8"))
 
+(use-package eshell
+  :bind (("C-x t" . jepson/eshell))
+  :config
+  (defun jepson/eshell ()
+    (interactive)
+    (let ((dir default-directory))
+      (eshell)
+      (with-current-buffer "*eshell*"
+        (cd dir)
+        (eshell-interrupt-process))))
+  (defun eshell/comint-run (program &rest args)
+    (comint-run program args)))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
@@ -749,7 +760,6 @@ or go back to just one window (by deleting all but the selected window)."
 		  mode-line-misc-info
 		  mode-line-end-spaces)))
 
-(defun eshell/comint-run (program &rest args)
-  (comint-run program args))
+
 
 (provide 'config)
