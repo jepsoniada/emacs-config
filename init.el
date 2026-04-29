@@ -233,6 +233,9 @@ or go back to just one window (by deleting all but the selected window)."
 (keymap-global-set "C-M-z" #'zap-to-char)
 (keymap-global-set "M-z" #'zap-up-to-char)
 
+(keymap-global-set "C-$" (lambda () (interactive)
+                           (xref--push-markers (current-buffer) (point) (selected-window))))
+
 (use-package ibuffer
   :bind ( ("C-x C-b" . ibuffer))
   :hook (ibuffer . hl-line-mode)
