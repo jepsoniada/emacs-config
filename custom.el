@@ -12,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(backup-directory-alist '(("." . "~/.config/emacs/backups")))
  '(browse-url-browser-function 'eww-browse-url)
- '(completion-ignore-case t t)
+ '(completion-ignore-case t)
  '(completion-pcm-leading-wildcard t)
  '(completion-pcm-word-delimiters " -_./:| ")
  '(custom-enabled-themes '(tango))
@@ -58,9 +58,9 @@
  '(org-hide-emphasis-markers t)
  '(overriding-text-conversion-style nil t)
  '(package-selected-packages
-   '(ada-mode ada-ts-mode aggressive-indent auctex avy chemtable consult
-              crux d-mode dash dockerfile-mode elixir-mode ellama
-              elnode erlang eshell-syntax-highlighting evil
+   '(ada-mode ada-ts-mode aggressive-indent any-case auctex avy chemtable
+              consult crux d-mode dash dockerfile-mode elixir-mode
+              ellama elnode erlang eshell-syntax-highlighting evil
               expand-region filechooser fsharp-mode geiser-guile
               glsl-mode gnuplot gnuplot-mode go-mode god-mode
               haskell-mode inwokacja ivy j-mode javap-mode json-ops
@@ -71,7 +71,7 @@
               raku-mode rust-mode scala-mode selected sly
               smalltalk-mode steamacs system-packages titan-mode tramp
               treepy typescript-mode typetest valign vertico which-key
-              xdg-launcher yaml yaml-mode))
+              wisitoken-parse_table-mode xdg-launcher yaml yaml-mode))
  '(package-vc-selected-packages
    '((xdg-launcher :url "https://github.com/emacs-exwm/xdg-launcher.git")
      (line-mark :url "https://github.com/jepsoniada/line-mark.git")
@@ -88,6 +88,7 @@
      (mercury nil) (sicstus "sicstus") (swi "swipl") (gnu "gprolog")
      (t "gprolog")))
  '(prolog-system 'swi)
+ '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
  '(scroll-bar-mode nil)
  '(search-exit-option 'edit)
