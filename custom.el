@@ -12,7 +12,7 @@
  ;; If there is more than one, they won't work right.
  '(backup-directory-alist '(("." . "~/.config/emacs/backups")))
  '(browse-url-browser-function 'eww-browse-url)
- '(completion-ignore-case t)
+ '(completion-ignore-case t t)
  '(completion-pcm-leading-wildcard t)
  '(completion-pcm-word-delimiters " -_./:| ")
  '(custom-enabled-themes '(tango))
@@ -37,13 +37,13 @@
  '(indent-tabs-mode nil)
  '(isearch-wrap-pause 'no)
  '(magit-clone-always-transient t)
+ '(magit-no-confirm nil)
+ '(magit-slow-confirm t)
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
  '(mini-modeline-face-attr '(:background "rey75"))
  '(minibuffer-depth-indicate-mode t)
- '(org-agenda-files
-   '("~/wiki/riskofrain2/passiveItems.org"
-     "/home/jepson/wiki/tabg/misc.org"))
+ '(org-agenda-files nil)
  '(org-auto-align-tags nil)
  '(org-babel-J-command "~/.nix-profile/bin/jconsole")
  '(org-capture-templates
