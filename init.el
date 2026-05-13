@@ -657,14 +657,9 @@ or go back to just one window (by deleting all but the selected window)."
   :pin melpa
   :config
   (when (null (getenv "TITAN"))
-    (add-to-list 'window-buffer-change-functions
-                 (lambda (window-or-frame)
-                   (when (not (minibufferp))
-	             (god-local-mode 1))))
-    (add-to-list 'window-selection-change-functions
-	         (lambda (window-or-frame)
-		   (when (not (minibufferp))
-		     (god-local-mode 1))))
+    (add-hook 'after-make-frame-functions
+              (lambda (&rest _)
+                (god-mode-all 1)))
 
     (defun jepson/god-mode/bubble-up-keymap (_file)
       (let ((kv (assq 'god-local-mode
@@ -700,11 +695,11 @@ or go back to just one window (by deleting all but the selected window)."
 		    mode-line-end-spaces))
 
     ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
-    (global-set-key (kbd "C-z") #'god-local-mode)
-    (global-set-key (kbd "π") #'god-local-mode)
+    (global-set-key (kbd "C-z") #'god-mode-all)
+    (global-set-key (kbd "π") #'god-mode-all)
 
     (define-key god-local-mode-map (kbd ".") #'repeat)
-    (define-key god-local-mode-map (kbd "z") #'god-local-mode)
+    (define-key god-local-mode-map (kbd "z") #'god-mode-all)
 
     (when (ignore-errors (require 'god-mode-isearch))
       (define-key isearch-mode-map (kbd "C-z") 'god-mode-isearch-activate)
