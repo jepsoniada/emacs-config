@@ -376,6 +376,7 @@ or go back to just one window (by deleting all but the selected window)."
 (ignore-errors (require 'typetest))
 
 (use-package avy
+  :ensure t
   :bind (("C-; C-l" . avy-goto-line)
          ("C-; C-s" . jepson/avy-search)
          ("C-; C-j" . jepson/avy-search-in-line))
@@ -457,6 +458,7 @@ or go back to just one window (by deleting all but the selected window)."
   (keymap-set isearch-mode-map "C-;" #'avy-isearch))
 
 (use-package vertico
+  :ensure t
   :config
   (vertico-mode 1))
 
@@ -513,6 +515,7 @@ or go back to just one window (by deleting all but the selected window)."
           ("<escape>" . transient-quit-all)))
 
 (use-package expand-region
+  :ensure t
   :bind (("M-h"          . nil)
          ("M-h C-d"      . er/mark-defun)
          ("M-h C-i C-\"" . er/mark-inside-quotes)
@@ -605,6 +608,7 @@ or go back to just one window (by deleting all but the selected window)."
   (winner-mode 1))
 
 (use-package marginalia
+  :ensure t
   :config
   (marginalia-mode 1))
 
@@ -617,11 +621,13 @@ or go back to just one window (by deleting all but the selected window)."
     (fsharp-eval-region (point-min) (point-max))))
 
 (use-package multiple-cursors
+  :ensure t
   :bind (("C-x r t" . mc/edit-lines)
          ("C-x r S" . mc/mark-all-in-region)
          ("C-x r R" . mc/mark-all-in-region-regexp)))
 
 (use-package magit
+  :ensure t
   :config
   (defun jepson/magit-commit-create (&optional args)
     (interactive (list (magit-commit-arguments)))
