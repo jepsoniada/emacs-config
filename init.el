@@ -272,6 +272,55 @@ or go back to just one window (by deleting all but the selected window)."
 
 (put 'if 'lisp-indent-function 1)
 
+;;; java indent
+
+(when (ignore-errors (require 'cc-styles))
+  (defun jepson/c-lineup-argcont (_)
+    (let ((prev-col (save-excursion
+                      (previous-line)
+                      (back-to-indentation)
+                      (current-column)))
+          (o c-basic-offset))
+      (save-excursion
+        (vector (pcase (cons (progn
+                               (previous-line)
+                               (back-to-indentation)
+                               (looking-at "[.]"))
+                             (progn
+                               (next-line)
+                               (back-to-indentation)
+                               (looking-at "[.]")))
+                  ('(nil . nil) prev-col)
+                  ('(nil . t  ) (+ prev-col o))
+                  ('(  t . nil) (- prev-col o))
+                  ('(  t . t  ) prev-col))))))
+
+  (setf (alist-get "jepson/java" c-style-alist)
+        '((c-basic-offset . 4)
+          (c-comment-only-line-offset . (0 . 0))
+          (c-offsets-alist . ((inline-open . 0)
+			      (topmost-intro-cont    . +)
+			      (statement-block-intro . +)
+			      (knr-argdecl-intro     . 0)
+			      (substatement-open     . 0)
+			      (substatement-label    . +)
+			      (label                 . +)
+			      (statement-case-open   . 0)
+			      (statement-cont        . +)
+			      (arglist-intro  . +)
+			      (arglist-close  . 0)
+			      (brace-list-intro . (first
+					           c-lineup-2nd-brace-entry-in-arglist
+					           c-lineup-class-decl-init-+ +))
+			      (access-label   . 0)
+			      (inher-cont     . c-lineup-java-inher)
+			      (func-decl-cont . c-lineup-java-throws)
+                              (arglist-cont . jepson/c-lineup-argcont)
+                              (arglist-cont-nonempty . +)
+                              (case-label . +)))))
+  (add-hook 'java-mode-hook (lambda () (c-set-style "jepson/java"))))
+
+
 ;;; loader for custom indentation
 
 (defun jepson/load-indent nil
