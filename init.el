@@ -322,7 +322,14 @@ or go back to just one window (by deleting all but the selected window)."
                              (find-file org-default-notes-file)))
 
   (when (ignore-errors (require 'valign))
-    (add-hook 'org-mode-hook #'valign-mode)))
+    (add-hook 'org-mode-hook #'valign-mode))
+  (setf org-capture-templates
+        '(("i" "Idea" entry (file+headline org-default-notes-file "Tasks")
+           "* TODO %?\n%u\n")
+          ("t" "Task" entry (file+headline "" "Tasks")
+           "* TODO %?\n  %u\n  %a")
+          ("w" "Watch" item (file+headline "" "Watch")
+           "%^{link?}"))))
 
 (when (ignore-errors (require 'dired))
   (setf dired-listing-switches "-hAl")

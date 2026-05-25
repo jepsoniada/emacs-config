@@ -46,11 +46,6 @@
  '(org-agenda-files nil)
  '(org-auto-align-tags nil)
  '(org-babel-J-command "~/.nix-profile/bin/jconsole")
- '(org-capture-templates
-   '(("i" "Idea" entry (file+headline org-default-notes-file "Tasks")
-      "* TODO %?\12%u\12")
-     ("t" "Task" entry (file+headline "" "Tasks")
-      "* TODO %?\12  %u\12  %a")))
  '(org-format-latex-options
    '(:foreground default :background default :scale 4.0 :html-foreground
                  "Black" :html-background "Transparent" :html-scale
