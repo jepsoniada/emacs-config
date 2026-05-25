@@ -120,7 +120,8 @@
       '(completion-ivy-try-completion completion-ivy-all-completions
 				      "ivy like completion"))
 
-(setf completion-styles '(ivy partial-completion emacs22))
+(setf completion-styles '(ivy partial-completion emacs22)
+      tab-always-indent 'complete)
 
 ;;; keybindings
 (defun keyboard-escape-quit ()
