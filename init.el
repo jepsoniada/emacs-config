@@ -726,6 +726,11 @@ or go back to just one window (by deleting all but the selected window)."
                     (eshell-command-result command)))
     ))
 
+(use-package sgml-mode ; html / mhtml mode
+  :hook (html-mode . (lambda ()
+                       (add-to-list 'html-tag-alist 
+                                    '("template" ("id"))))))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
