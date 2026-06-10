@@ -21,6 +21,7 @@
      "de8f2d8b64627535871495d6fe65b7d0070c4a1eb51550ce258cd240ff9394b0"
      "e7820b899036ae7e966dcaaec29fd6b87aef253748b7de09e74fdc54407a7a02"
      default))
+ '(default-frame-alist '((vertical-scroll-bars) (background-mode . light)))
  '(dired-dwim-target 'dired-dwim-target-recent)
  '(dired-isearch-filenames t)
  '(display-buffer-alist '(("*Buffer List*" display-buffer-same-window (nil))))
@@ -35,9 +36,12 @@
    '("convert" "-size" "%wx%h" "%f[0]" "-resize" "%wx%h>" "-gravity"
      "center" "-extent" "%wx%h" "jpeg:%t"))
  '(indent-tabs-mode nil)
+ '(initial-frame-alist '((vertical-scroll-bars) (background-mode . light)))
  '(isearch-wrap-pause 'no)
  '(magit-clone-always-transient t)
+ '(magit-dwim-selection nil)
  '(magit-no-confirm nil)
+ '(magit-section-visibility-indicator '("…" . t))
  '(magit-slow-confirm t)
  '(menu-bar-mode nil)
  '(mini-modeline-echo-duration 10)
@@ -63,10 +67,11 @@
               markdown-mode mini-modeline minimap multiple-cursors
               nix-mode ob-J ob-ada-spark ob-prolog ob-raku
               package-lint paredit pdf-tools py-preformat qrencode
-              raku-mode rust-mode scala-mode selected sly
+              rainbow-mode raku-mode rust-mode scala-mode selected sly
               smalltalk-mode steamacs system-packages titan-mode tramp
               treepy typescript-mode typetest valign vertico which-key
-              wisitoken-parse_table-mode xdg-launcher yaml yaml-mode))
+              wisitoken-parse_table-mode wpctl xdg-launcher yaml
+              yaml-mode))
  '(package-vc-selected-packages
    '((xdg-launcher :url "https://github.com/emacs-exwm/xdg-launcher.git")
      (line-mark :url "https://github.com/jepsoniada/line-mark.git")
@@ -85,6 +90,8 @@
  '(prolog-system 'swi)
  '(read-buffer-completion-ignore-case t)
  '(read-file-name-completion-ignore-case t)
+ '(safe-local-variable-directories
+   '("/home/jepson/studia/inzynieriaOprogramowania/movievault/"))
  '(scroll-bar-mode nil)
  '(search-exit-option 'edit)
  '(tool-bar-mode nil)
