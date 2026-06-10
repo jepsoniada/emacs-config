@@ -775,9 +775,10 @@ or go back to just one window (by deleting all but the selected window)."
 		    mode-line-misc-info
 		    mode-line-end-spaces))
 
-    ;; (define-key input-decode-map (kbd "C-i") (kbd "<C-i>"))
-    (global-set-key (kbd "C-z") #'god-mode-all)
-    (global-set-key (kbd "π") #'god-mode-all)
+    (global-set-key (kbd "C-z") (lambda () (interactive)
+                                  (god-mode-all 1)))
+    (global-set-key (kbd "π") (lambda () (interactive)
+                                (god-mode-all 1)))
 
     (define-key god-local-mode-map (kbd ".") #'repeat)
     (define-key god-local-mode-map (kbd "z") #'god-mode-all)
