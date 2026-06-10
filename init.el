@@ -743,6 +743,21 @@ or go back to just one window (by deleting all but the selected window)."
   :hook (js-jsx-mode . (lambda ()
                          (setq-local sgml-tag-alist html-tag-alist))))
 
+(use-package skeleton
+  :config
+  (defun elisp-package-template (&optional str arg)
+    "template for minimal, instalable, emacslisp package"
+    (interactive "*P\nP}")
+    (save-excursion
+      (atomic-change-group
+        (goto-char 0)
+        (skeleton-proxy-new
+         '(nil
+           ";;; " (file-relative-name buffer-file-name) " --- " "-*- lexical-binding:t -*-" \n
+           ";; Version: 1")
+         str
+         arg)))))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
