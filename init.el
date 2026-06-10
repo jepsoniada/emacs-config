@@ -437,6 +437,7 @@ or go back to just one window (by deleting all but the selected window)."
   :bind (("C-; C-l" . avy-goto-line)
          ("C-; C-s" . jepson/avy-search)
          ("C-; C-j" . jepson/avy-search-in-line))
+  :custom-face (avy-goto-char-timer-face ((t ( :inherit (lazy-highlight)))))
   :config
   (defun jepson/avy-search ()
     (interactive)
