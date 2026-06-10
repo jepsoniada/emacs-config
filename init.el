@@ -702,7 +702,8 @@ or go back to just one window (by deleting all but the selected window)."
 (use-package lsp-mode)
 
 (use-package eshell
-  :bind (("C-x t" . jepson/eshell))
+  :bind (("C-x t" . jepson/eshell)
+         ("C-M-:" . jepson/eshell-command))
   :config
   (defun jepson/eshell ()
     (interactive)
@@ -712,7 +713,18 @@ or go back to just one window (by deleting all but the selected window)."
         (cd dir)
         (eshell-interrupt-process))))
   (defun eshell/comint-run (program &rest args)
-    (comint-run program args)))
+    (comint-run program args))
+  (defun jepson/eshell-command (command)
+    (interactive (list (eshell-read-command)))
+    ;; (message "%s" (catch 'eshell-value
+    ;;                 (let ((eshell-non-interactive-p t))
+    ;;                   (eshell-do-eval (list 'eshell-commands
+    ;;     		                    (list 'eshell-command-to-value
+    ;;     		                          (eshell-parse-command command)))
+    ;;                                   t))))
+    (message "%s" (with-current-buffer (current-buffer)
+                    (eshell-command-result command)))
+    ))
 
 ;;; god mode
 (use-package god-mode
