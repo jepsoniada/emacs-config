@@ -15,11 +15,9 @@
  '(completion-ignore-case t t)
  '(completion-pcm-leading-wildcard t)
  '(completion-pcm-word-delimiters " -_./:| ")
- '(custom-enabled-themes '(tango))
+ '(custom-enabled-themes '(jepson))
  '(custom-safe-themes
-   '("1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5"
-     "de8f2d8b64627535871495d6fe65b7d0070c4a1eb51550ce258cd240ff9394b0"
-     "e7820b899036ae7e966dcaaec29fd6b87aef253748b7de09e74fdc54407a7a02"
+   '("6f5b30bac99130efc9185d9929efe053fa367dbbf6ab29a8ef41a3d2dab0c364"
      default))
  '(default-frame-alist '((vertical-scroll-bars) (background-mode . light)))
  '(dired-dwim-target 'dired-dwim-target-recent)
