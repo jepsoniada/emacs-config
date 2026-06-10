@@ -731,6 +731,18 @@ or go back to just one window (by deleting all but the selected window)."
                        (add-to-list 'html-tag-alist 
                                     '("template" ("id"))))))
 
+(use-package js
+  :after (sgml-mode)
+  :bind ( :map js-jsx-mode-map
+          ("C-c C-a" . (lambda () (interactive)
+                         (atomic-change-group
+                           (call-interactively #'sgml-attributes))))
+          ("C-c C-t" . (lambda () (interactive)
+                         (atomic-change-group
+                           (call-interactively #'sgml-tag)))))
+  :hook (js-jsx-mode . (lambda ()
+                         (setq-local sgml-tag-alist html-tag-alist))))
+
 ;;; god mode
 (use-package god-mode
   :after (paredit)
